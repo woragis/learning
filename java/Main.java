@@ -7,6 +7,8 @@ public class Main {
         DataTypes.shortDataType();
         DataTypes.intDataType();
         DataTypes.longDataType();
+        DataTypes.floatDataType();
+        DataTypes.doubleDataType();
     }
 
 }
