@@ -53,6 +53,103 @@
       That's why the real protocol is called <strong>TCP/IP</strong>
       because the transfer occurs through ip protocol, but with the help of TCP
     </p>
+    <p>
+      TCP can deal with data loss along the way without needing to request the
+      full data again
+    </p>
+    <h2>HTTP <em>Hypertext Transfer Protocol</em></h2>
+    <p>Basically is the formatting of use of the other protocols</p>
+    <h3>Successful interaction</h3>
+    <h4>Request</h4>
+    <pre>
+        GET / HTTP/1.1
+        Host: cats.com
+        ...
+    </pre>
+    <h4>Response</h4>
+    <pre>
+        HTTP/1.1 200 OK
+        Content-type: text/html
+        ...
+    </pre>
+
+    <h3>Fail interaction</h3>
+    <h4>Request</h4>
+    <pre>
+        GET / HTTP/1.1
+        Host: cats.com
+        ...
+    </pre>
+    <h4>Response</h4>
+    <pre>
+        HTTP/1.1 404 Not Found
+        Content-type: text/html
+        ...
+    </pre>
+    <h3>Request Structure</h3>
+    Method - request-target - Http version
+    <h3>Response Structure</h3>
+    Http version - Http status
+    <table>
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Code</th>
+          <th>Text</th>
+          <th>Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Success</td>
+          <td>200</td>
+          <td>OK</td>
+          <td>All is well, valid request and response</td>
+        </tr>
+        <tr>
+          <td>Redirection</td>
+          <td>301</td>
+          <td>Moved Permanently</td>
+          <td>
+            Page is now at a new location, automatic redirects built in to most
+            browsers
+          </td>
+        </tr>
+        <tr>
+          <td>Redirection</td>
+          <td>302</td>
+          <td>Found</td>
+          <td>Page is now at a new location temporarily</td>
+        </tr>
+        <tr>
+          <td>Client Error</td>
+          <td>401</td>
+          <td>Unauthorized</td>
+          <td>Page typically requires login credentials</td>
+        </tr>
+        <tr>
+          <td>Client Error</td>
+          <td>403</td>
+          <td>Forbidden</td>
+          <td>Server will not allow this request</td>
+        </tr>
+        <tr>
+          <td>Client Error</td>
+          <td>404</td>
+          <td>Not Found</td>
+          <td>Server cannot find what was asked for</td>
+        </tr>
+        <tr>
+          <td>Server Error</td>
+          <td>500</td>
+          <td>Internal Server Error</td>
+          <td>
+            Generic server failure in responding to the otherwise-valid request
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
     <h2>Other Protocols</h2>
     <ul>
       <li>FTP <em>File transfer protocol</em> <strong>uses port 21</strong></li>
