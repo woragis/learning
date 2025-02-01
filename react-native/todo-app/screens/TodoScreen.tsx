@@ -30,7 +30,7 @@ const TodoScreen = () => {
         key={`todo_item_${item.id}_at_${index}`}
         style={styles.todoList}
       >
-        <Text>{item.title}</Text>
+        <Text style={styles.todoListText}>{item.title}</Text>
       </View>
     )
   }
@@ -75,9 +75,9 @@ const styles = StyleSheet.create({
   },
   touchable: {
     backgroundColor: '#000',
-    borderRadius: 6,
-    paddingVertical: 12,
-    marginTop: 24,
+    borderRadius: 8,
+    paddingVertical: 8,
+    marginVertical: 34,
     alignItems: 'center',
   },
   touchableText: {
@@ -85,5 +85,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 28,
   },
-  todoList: {},
+  todoList: {
+    backgroundColor: '#1c90ff',
+    borderRadius: 6,
+    paddingHorizontal: 6,
+    paddingVertical: 12,
+    marginBottom: 12,
+  },
+  todoListText: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: '800',
+  },
 })
