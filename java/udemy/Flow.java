@@ -1,15 +1,17 @@
 public class Flow {
     public static void main(String[] args) {
+        // Switch cases can be used for:
+        // byte, short, int, char
+        // String
+        // Enum
+
         int myVal = 4;
         oldSwitch(myVal);
+        System.out.println("Month 5 is in the : " + monthQuarter(8) + " quarter of the year");
     }
 
     public static void oldSwitch(int val) {
         switch (val) {
-            // Switch cases can be used for:
-            // byte, short, int, char
-            // String
-            // Enum
             case 1:
                 System.out.println("Value was 1");
                 break;
@@ -27,33 +29,28 @@ public class Flow {
         }
     }
 
-    // public static void enhancedSwitch(int val) {
-    // Not Working with my Java version
-    // switch (val) {
-    // // Switch cases can be used for:
-    // // byte, short, int, char
-    // // String
-    // // Enum
-    // case 1 -> System.out.println("Value was 1");
-    // case 2 -> System.out.println("Value was 2");
-    // case 3, case 4, case 5 -> {
-    // System.out.println("Value is probrably 3, 4 or 5");
-    // }
-    // default -> System.out.println("Value was something i didont expect");
-    // }
-    // return switch (val) {
-    // // Switch cases can be used for:
-    // // byte, short, int, char
-    // // String
-    // // Enum
-    // case 1 -> 3;
-    // case 2 -> 4;
-    // case 3, case 4, case 5 -> {
-    // System.out.println("Value is probrably 3, 4 or 5");
-    // yield 5;
-    // }
-    // default -> 6;
-    // }
-    // }
+    public static void enhancedSwitch(int val) {
+        switch (val) {
+            case 1 -> System.out.println("Value was 1");
+            case 2 -> System.out.println("Value was 2");
+            case 3, 4, 5 -> {
+                System.out.println("Value is probrably 3, 4 or 5");
+            }
+            default -> System.out.println("Value was something i didont expect");
+        }
+    }
+
+    public static int monthQuarter(int month) {
+        return switch (month) {
+            case 1, 2, 3 -> 1;
+            case 4, 5, 6 -> 2;
+            case 7, 8, 9 -> 3;
+            case 10, 11, 12 -> 4;
+            default -> {
+                System.out.println("Month not valid");
+                yield 0;
+            }
+        };
+    }
 
 }
