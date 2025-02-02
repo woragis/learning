@@ -1,11 +1,11 @@
-import { DataInterface } from '@/src/types/todo.types'
+import { TodoInterface } from '@/src/types/todo.types'
 import { useState } from 'react'
 
 export const useTodoScreenModel = () => {
   const [todo, setTodo] = useState<string>('')
-  const [todoList, setTodoList] = useState<DataInterface[]>([])
-  const [editedTodo, setEditedTodo] = useState<DataInterface | undefined>(
-    {} as DataInterface
+  const [todoList, setTodoList] = useState<TodoInterface[]>([])
+  const [editedTodo, setEditedTodo] = useState<TodoInterface | undefined>(
+    {} as TodoInterface
   )
 
   const handleTodoChange = (userText: string) => {
@@ -24,7 +24,7 @@ export const useTodoScreenModel = () => {
     setTodoList((prev) => (prev = prev.filter((todo) => todo.id !== id)))
   }
 
-  const handleTodoEdit = (todo: DataInterface) => {
+  const handleTodoEdit = (todo: TodoInterface) => {
     setTodo(todo.title)
     setEditedTodo(todo)
   }

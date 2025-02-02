@@ -1,9 +1,9 @@
-export interface DataInterface {
+export interface TodoInterface {
   id: string
   title: string
 }
 
 export interface TodoListInterface {
-  item: DataInterface
+  item: TodoInterface
   index: number
 }
