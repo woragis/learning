@@ -1,3 +1,5 @@
+import { TodoListInterface } from '@/src/types/todo.types'
+import { useTodoScreenModel } from './model'
 import {
   FlatList,
   SafeAreaView,
@@ -7,69 +9,18 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import React, { useState } from 'react'
 import { IconButton } from 'react-native-paper'
 
-interface DataInterface {
-  id: string
-  title: string
-}
-// const dummyData: DataInterface[] = [
-//   { id: '81', title: 'wash car' },
-//   { id: '82', title: 'read a book' },
-// ]
-
-interface TodoListInterface {
-  item: DataInterface
-  index: number
-}
-
-const TodoScreen = () => {
-  const [todo, setTodo] = useState<string>('')
-  const [todoList, setTodoList] = useState<DataInterface[]>([])
-  const [editedTodo, setEditedTodo] = useState<DataInterface | undefined>(
-    {} as DataInterface
-  )
-  const [editingTodo, setEditingTodo] = useState<boolean>(false)
-
-  const handleTodoChange = (userText: string) => {
-    setTodo(userText)
-  }
-
-  const handleTodoSubmit = () => {
-    if (todo.length === 0) return
-    setTodoList(
-      (prev) => (prev = [...prev, { id: Date.now().toString(), title: todo }])
-    )
-    setTodo('')
-  }
-
-  const handleTodoDelete = (id: string) => {
-    setTodoList((prev) => (prev = prev.filter((todo) => todo.id !== id)))
-  }
-
-  const handleTodoEdit = (todo: DataInterface) => {
-    setTodo(todo.title)
-    setEditedTodo(todo)
-    setEditingTodo(true)
-  }
-
-  const handleTodoEditSubmit = () => {
-    if (todo.length === 0) return
-    if (editedTodo) {
-      setTodoList(
-        (prev) => (prev = prev.filter((todo) => todo.id !== editedTodo.id))
-      )
-      setTodoList(
-        (prev) => (prev = [...prev, { id: editedTodo.id, title: todo }])
-      )
-      setEditingTodo(false)
-      setTodo('')
-      setEditedTodo(undefined)
-    }
-  }
-
-  // render todo
+export const TodoScreenView = ({
+  editedTodo,
+  handleTodoChange,
+  handleTodoDelete,
+  handleTodoEdit,
+  handleTodoEditSubmit,
+  handleTodoSubmit,
+  todo,
+  todoList,
+}: ReturnType<typeof useTodoScreenModel>) => {
   const renderTodos = ({ item, index }: TodoListInterface) => {
     return (
       <View
@@ -91,7 +42,6 @@ const TodoScreen = () => {
     )
   }
   return (
-    // General Component
     <SafeAreaView>
       <Text>TodoScreen</Text>
 
@@ -129,8 +79,6 @@ const TodoScreen = () => {
     </SafeAreaView>
   )
 }
-
-export default TodoScreen
 
 const styles = StyleSheet.create({
   container: {
