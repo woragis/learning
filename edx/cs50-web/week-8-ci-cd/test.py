@@ -1,16 +1,40 @@
+import unittest
 from prime import is_prime
 
 
-def test_prime(n, expected):
-    if is_prime(n) != expected:
-        print(f'Error on is_prime({n}), expected: {expected}')
-    else:
-        print(f'Test passed')
+class Test(unittest.TestCase):
+    def test_1(self):
+        '''Check that 1 is not prime.'''
+        self.assertFalse(is_prime(1))
+
+    def test_2(self):
+        '''Check that 2 is prime.'''
+        self.assertTrue(is_prime(2))
+
+    def test_3(self):
+        '''Check that 3 is prime.'''
+        self.assertTrue(is_prime(3))
+
+    def test_8(self):
+        '''Check that 8 is not prime.'''
+        self.assertFalse(is_prime(8))
+
+    def test_11(self):
+        '''Check that 11 is prime.'''
+        self.assertTrue(is_prime(11))
+
+    def test_13(self):
+        '''Check that 13 is not prime.'''
+        self.assertTrue(is_prime(13))
+
+    def test_25(self):
+        '''Check that 25 is prime.'''
+        self.assertFalse(is_prime(25))
+
+    def test_28(self):
+        '''Check that 28 is prime.'''
+        self.assertFalse(is_prime(28))
 
 
-test_prime(2, True)
-test_prime(3, True)
-test_prime(5, True)
-test_prime(25, False)
-test_prime(12, False)
-test_prime(12, True)
+if __name__ == '__main__':
+    unittest.main()
