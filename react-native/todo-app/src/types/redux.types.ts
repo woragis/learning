@@ -1,6 +1,6 @@
 import { TodoInterface } from './todo.types'
 
-export interface TodoState {
+export interface TodosState {
   todos: TodoInterface[]
   loading: boolean
 }

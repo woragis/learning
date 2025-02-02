@@ -1,4 +1,4 @@
-import { TodoState } from '@/src/types/redux.types'
+import { TodosState } from '@/src/types/redux.types'
 import { TodoInterface } from '@/src/types/todo.types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import addAsyncBulider from './builder/addAsync'
@@ -7,7 +7,7 @@ import deleteAsyncBulider from './builder/deleteAsync'
 
 export const todosSlice = createSlice({
   name: 'todos',
-  initialState: {} as TodoState,
+  initialState: {} as TodosState,
   reducers: {
     addTodo: (state, action: PayloadAction<TodoInterface>) => {
       state.todos.push(action.payload)

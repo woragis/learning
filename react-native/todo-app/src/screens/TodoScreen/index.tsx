@@ -1,10 +1,10 @@
-import { useTodoScreenModel } from './model'
-import { TodoScreenView } from './view'
+import { useTodosScreenModel } from './model'
+import { TodosScreenView } from './view'
 
-const TodoScreen = () => {
-  const model = useTodoScreenModel()
+const TodosScreen = () => {
+  const model = useTodosScreenModel()
 
-  return <TodoScreenView {...model} />
+  return <TodosScreenView {...model} />
 }
 
-export default TodoScreen
+export default TodosScreen

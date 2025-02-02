@@ -1,8 +1,8 @@
-import { TodoState } from '@/src/types/redux.types'
+import { TodosState } from '@/src/types/redux.types'
 import { ActionReducerMapBuilder } from '@reduxjs/toolkit'
 import { todosEditAsync } from '../thunks'
 
-const editAsyncBulider = (builder: ActionReducerMapBuilder<TodoState>) => {
+const editAsyncBulider = (builder: ActionReducerMapBuilder<TodosState>) => {
   builder
     .addCase(todosEditAsync.fulfilled, (state, action) => {
       state.loading = false

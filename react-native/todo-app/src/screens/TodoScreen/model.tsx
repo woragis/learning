@@ -1,7 +1,7 @@
 import { TodoInterface } from '@/src/types/todo.types'
 import { useState } from 'react'
 
-export const useTodoScreenModel = () => {
+export const useTodosScreenModel = () => {
   const [todo, setTodo] = useState<string>('')
   const [todoList, setTodoList] = useState<TodoInterface[]>([])
   const [editedTodo, setEditedTodo] = useState<TodoInterface | undefined>(

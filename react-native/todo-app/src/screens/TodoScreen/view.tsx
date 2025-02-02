@@ -1,5 +1,5 @@
 import { TodoListInterface } from '@/src/types/todo.types'
-import { useTodoScreenModel } from './model'
+import { useTodosScreenModel } from './model'
 import {
   FlatList,
   SafeAreaView,
@@ -11,7 +11,7 @@ import {
 } from 'react-native'
 import { IconButton } from 'react-native-paper'
 
-export const TodoScreenView = ({
+export const TodosScreenView = ({
   editedTodo,
   handleTodoChange,
   handleTodoDelete,
@@ -20,7 +20,7 @@ export const TodoScreenView = ({
   handleTodoSubmit,
   todo,
   todoList,
-}: ReturnType<typeof useTodoScreenModel>) => {
+}: ReturnType<typeof useTodosScreenModel>) => {
   const renderTodos = ({ item, index }: TodoListInterface) => {
     return (
       <View
