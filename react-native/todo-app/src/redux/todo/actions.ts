@@ -1,7 +1,3 @@
-import { todoSlice } from "./slice";
+import { todosSlice } from './slice'
 
-export const {
-    add,
-    edit,
-    delete,
-} = todoSlice.actions
+export const { addTodo, editTodo, deleteTodo } = todosSlice.actions
