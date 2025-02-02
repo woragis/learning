@@ -1,6 +1,9 @@
 import { TodoState } from '@/src/types/redux.types'
 import { TodoInterface } from '@/src/types/todo.types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import addAsyncBulider from './builder/addAsync'
+import editAsyncBulider from './builder/editAsync'
+import deleteAsyncBulider from './builder/deleteAsync'
 
 export const todosSlice = createSlice({
   name: 'todos',
@@ -19,7 +22,11 @@ export const todosSlice = createSlice({
       state.todos.filter((todo) => todo.id !== action.payload.id)
     },
   },
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    addAsyncBulider(builder)
+    editAsyncBulider(builder)
+    deleteAsyncBulider(builder)
+  },
 })
 
 export default todosSlice
