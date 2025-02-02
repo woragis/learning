@@ -4,7 +4,7 @@ import { HelloWave } from '@/src/components/HelloWave'
 import ParallaxScrollView from '@/src/components/ParallaxScrollView'
 import { ThemedText } from '@/src/components/ThemedText'
 import { ThemedView } from '@/src/components/ThemedView'
-import TodosScreen from '@/src/screens/TodoScreen'
+import TodosScreen from '@/src/screens/TodosScreen'
 
 export default function HomeScreen() {
   return <TodosScreen />
