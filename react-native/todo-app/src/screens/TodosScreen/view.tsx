@@ -11,6 +11,7 @@ import {
   View,
 } from 'react-native'
 import { IconButton } from 'react-native-paper'
+import { Colors } from '@/src/constants/Colors'
 
 export const TodosScreenView = ({
   editedTodo,
@@ -30,6 +31,7 @@ export const TodosScreenView = ({
         key={`todo_item_${item.id}_at_${index}`}
         style={styles.todoList}
       >
+        <Text style={styles.todoListText}>{item.title}</Text>
         <IconButton
           icon='pencil'
           iconColor='#fff'
@@ -40,7 +42,6 @@ export const TodosScreenView = ({
           iconColor='#fff'
           onPress={() => handleTodoDelete(item)}
         />
-        <Text style={styles.todoListText}>{item.title}</Text>
       </View>
     )
   }
@@ -99,6 +100,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     paddingVertical: 8,
     paddingHorizontal: 16,
+    color: Colors.light.background,
   },
   touchable: {
     backgroundColor: '#000',
@@ -115,7 +117,7 @@ const styles = StyleSheet.create({
   todoList: {
     backgroundColor: '#1c90ff',
     borderRadius: 6,
-    paddingHorizontal: 6,
+    paddingHorizontal: 12,
     paddingVertical: 12,
     marginBottom: 12,
     flexDirection: 'row',
@@ -130,6 +132,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 20,
     fontWeight: '800',
+    marginLeft: 20,
     flex: 1,
   },
 })
