@@ -79,12 +79,12 @@ export const TodosScreenView = ({
           renderItem={renderTodos}
         />
       </View>
-      <Modal visible={error ? true : false}>
+      {/* <Modal visible={error ? true : false}>
         <Text>{error}</Text>
-      </Modal>
-      <Modal visible={loading}>
+      </Modal> */}
+      {/* <Modal visible={loading}>
         <Text>Loading</Text>
-      </Modal>
+      </Modal> */}
     </SafeAreaView>
   )
 }

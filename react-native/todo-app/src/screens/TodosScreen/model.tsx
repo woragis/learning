@@ -1,24 +1,20 @@
 import { useAppDispatch, useAppSelector } from '@/src/redux/hooks'
-// import { addTodo, deleteTodo, editTodo } from '@/src/redux/todos/actions'
-import {
-  todosAddAsync,
-  todosDeleteAsync,
-  todosEditAsync,
-} from '@/src/redux/todos/thunks'
+import todosApi from '@/src/redux/todos/apiSlice'
+import { addTodo, deleteTodo, editTodo } from '@/src/redux/todos/actions'
+// import {
+//   todosAddAsync,
+//   todosDeleteAsync,
+//   todosEditAsync,
+// } from '@/src/redux/todos/thunks'
 import { TodoInterface } from '@/src/types/todo.types'
 import { useState } from 'react'
 
 export const useTodosScreenModel = () => {
+  const dispatch = useAppDispatch()
   const { todos, loading, error } = useAppSelector((state) => state.todos)
-  const todoInitialState: TodoInterface = {
-    id: '',
-    title: '',
-    description: '',
-    completed: false,
-    author_id: '',
-  }
+  const [addTodoApi, { data, isLoading }] = todosApi.usePostTodoMutation()
 
-  const [todo, setTodo] = useState<TodoInterface>(todoInitialState)
+  const [todo, setTodo] = useState<TodoInterface>({} as TodoInterface)
 
   const [editedTodo, setEditedTodo] = useState<TodoInterface | undefined>(
     undefined
@@ -28,17 +24,14 @@ export const useTodosScreenModel = () => {
     setTodo((prev) => (prev = { ...prev, title: userText }))
   }
 
-  const dispatch = useAppDispatch()
   const handleTodoSubmit = () => {
     if (todo.title.length === 0) return
-    // dispatch(addTodo(todo))
-    dispatch(todosAddAsync(todo))
-    setTodo(todoInitialState)
+    dispatch(addTodo({ ...todo, id: Date.now().toString() }))
+    setTodo({ title: '' } as TodoInterface)
   }
 
   const handleTodoDelete = (todo: TodoInterface) => {
-    // dispatch(deleteTodo(todo))
-    dispatch(todosDeleteAsync(todo))
+    dispatch(deleteTodo(todo))
   }
 
   const handleTodoEdit = (todo: TodoInterface) => {
@@ -48,9 +41,8 @@ export const useTodosScreenModel = () => {
 
   const handleTodoEditSubmit = () => {
     if (todo.title.length === 0 || !editedTodo) return
-    // dispatch(editTodo(editedTodo))
-    dispatch(todosEditAsync(todo))
-    setTodo(todoInitialState)
+    dispatch(editTodo(todo))
+    setTodo({ title: '' } as TodoInterface)
     setEditedTodo(undefined)
   }
 

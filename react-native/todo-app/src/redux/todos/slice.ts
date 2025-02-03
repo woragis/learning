@@ -7,19 +7,21 @@ import deleteAsyncBulider from './builder/deleteAsync'
 
 export const todosSlice = createSlice({
   name: 'todos',
-  initialState: {} as TodosState,
+  initialState: { todos: [] as TodoInterface[] } as TodosState,
   reducers: {
     addTodo: (state, action: PayloadAction<TodoInterface>) => {
       state.todos.push(action.payload)
     },
     editTodo: (state, action: PayloadAction<TodoInterface>) => {
-      let updatedTodo = action.payload
-      let oldTodos = state.todos.filter((todo) => todo.id !== updatedTodo.id)
-      oldTodos.push(updatedTodo)
-      state.todos = oldTodos
+      state.todos = state.todos.map((todo) => {
+        if (todo.id === action.payload.id) {
+          return { ...todo, title: action.payload.title }
+        }
+        return todo
+      })
     },
     deleteTodo: (state, action: PayloadAction<TodoInterface>) => {
-      state.todos.filter((todo) => todo.id !== action.payload.id)
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload.id)
     },
   },
   extraReducers: (builder) => {
