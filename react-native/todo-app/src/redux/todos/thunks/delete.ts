@@ -1,6 +1,19 @@
 import { TodosState } from '@/src/types/redux.types'
 import { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit'
-import { todosDeleteAsync } from '../thunks'
+import { DeleteResponse } from '@/src/types/response.types'
+import { TodoInterface } from '@/src/types/todo.types'
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
+import { TODOS_BASE_URL } from '.'
+
+const todosDeleteAsync = createAsyncThunk(
+  'todos/delete',
+  async (todo: TodoInterface) => {
+    await axios.delete<DeleteResponse>(`${TODOS_BASE_URL}/${todo.id}`)
+
+    return todo.id
+  }
+)
 
 const deleteAsyncBulider = (builder: ActionReducerMapBuilder<TodosState>) => {
   builder

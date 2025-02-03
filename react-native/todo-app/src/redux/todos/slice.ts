@@ -1,10 +1,12 @@
 import { TodosState } from '@/src/types/redux.types'
 import { TodoInterface } from '@/src/types/todo.types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import addAsyncBulider from './builder/addAsync'
-import editAsyncBulider from './builder/editAsync'
-import deleteAsyncBulider from './builder/deleteAsync'
-import fetchAsyncBulider from './builder/getAsync'
+import {
+  addAsyncBulider,
+  editAsyncBulider,
+  deleteAsyncBulider,
+  fetchAsyncBulider,
+} from './thunks'
 
 export const todosSlice = createSlice({
   name: 'todos',

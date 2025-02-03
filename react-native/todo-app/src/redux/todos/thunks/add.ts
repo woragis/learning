@@ -1,12 +1,21 @@
-import { TodosState } from '@/src/types/redux.types'
+import { TodoRepsonse } from '@/src/types/response.types'
+import { TodoInterface } from '@/src/types/todo.types'
 import {
   ActionReducerMapBuilder,
-  AsyncThunkAction,
-  AsyncThunkPayloadCreatorReturnValue,
+  createAsyncThunk,
   PayloadAction,
 } from '@reduxjs/toolkit'
-import { todosAddAsync } from '../thunks'
-import { TodoInterface } from '@/src/types/todo.types'
+import { TODOS_BASE_URL } from '.'
+import { TodosState } from '@/src/types/redux.types'
+
+const todosAddAsync = createAsyncThunk(
+  'todos/add',
+  async (todo: TodoInterface) => {
+    const response = await axios.post<TodoRepsonse>(`${TODOS_BASE_URL}/`, todo)
+
+    return response.data.data
+  }
+)
 
 const addAsyncBulider = (builder: ActionReducerMapBuilder<TodosState>) => {
   builder
