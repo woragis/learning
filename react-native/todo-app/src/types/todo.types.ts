@@ -1,8 +1,8 @@
 export interface TodoInterface {
-  id: string
+  id?: string
   title: string
   description: string
-  completed: boolean
+  completed?: boolean
   author_id: string
 }
 

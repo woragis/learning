@@ -8,9 +8,12 @@ const editAsyncBulider = (builder: ActionReducerMapBuilder<TodosState>) => {
     .addCase(todosEditAsync.fulfilled, (state, action: PayloadAction<any>) => {
       state.loading = false
       state.error = undefined
-      state.todos
-        .filter((todo) => todo.id !== action.payload.id)
-        .push(action.payload)
+      state.todos = state.todos.map((todo) => {
+        if (todo.id === action.payload.id) {
+          return { ...todo, title: action.payload.title }
+        }
+        return todo
+      })
     })
     .addCase(todosEditAsync.pending, (state, action) => {
       state.loading = true

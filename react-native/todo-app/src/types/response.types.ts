@@ -13,3 +13,7 @@ export interface TodosRepsonse extends Response {
 export interface TodoRepsonse extends Response {
   data: TodoInterface
 }
+
+export interface DeleteResponse extends Response {
+  data: null
+}

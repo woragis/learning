@@ -9,7 +9,7 @@ const deleteAsyncBulider = (builder: ActionReducerMapBuilder<TodosState>) => {
       (state, action: PayloadAction<any>) => {
         state.loading = false
         state.error = undefined
-        state.todos.filter((todo) => todo.id !== action.payload.id)
+        state.todos = state.todos.filter((todo) => todo.id !== action.payload)
       }
     )
     .addCase(todosDeleteAsync.pending, (state, action) => {

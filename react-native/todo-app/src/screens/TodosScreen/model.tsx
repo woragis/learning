@@ -1,20 +1,26 @@
 import { useAppDispatch, useAppSelector } from '@/src/redux/hooks'
 import todosApi from '@/src/redux/todos/apiSlice'
-import { addTodo, deleteTodo, editTodo } from '@/src/redux/todos/actions'
-// import {
-//   todosAddAsync,
-//   todosDeleteAsync,
-//   todosEditAsync,
-// } from '@/src/redux/todos/thunks'
+// import { addTodo, deleteTodo, editTodo } from '@/src/redux/todos/actions'
 import { TodoInterface } from '@/src/types/todo.types'
 import { useState } from 'react'
+import {
+  todosAddAsync,
+  todosDeleteAsync,
+  todosEditAsync,
+} from '@/src/redux/todos/thunks'
 
 export const useTodosScreenModel = () => {
   const dispatch = useAppDispatch()
   const { todos, loading, error } = useAppSelector((state) => state.todos)
   const [addTodoApi, { data, isLoading }] = todosApi.usePostTodoMutation()
 
-  const [todo, setTodo] = useState<TodoInterface>({} as TodoInterface)
+  const todoInitialState: TodoInterface = {
+    title: '',
+    description: 'Random',
+    author_id: 'f03576b9-b62e-4c36-a2ef-ad3aaa2a71fa',
+  }
+
+  const [todo, setTodo] = useState<TodoInterface>(todoInitialState)
 
   const [editedTodo, setEditedTodo] = useState<TodoInterface | undefined>(
     undefined
@@ -26,12 +32,12 @@ export const useTodosScreenModel = () => {
 
   const handleTodoSubmit = () => {
     if (todo.title.length === 0) return
-    dispatch(addTodo({ ...todo, id: Date.now().toString() }))
-    setTodo({ title: '' } as TodoInterface)
+    dispatch(todosAddAsync(todo))
+    setTodo(todoInitialState)
   }
 
   const handleTodoDelete = (todo: TodoInterface) => {
-    dispatch(deleteTodo(todo))
+    dispatch(todosDeleteAsync(todo))
   }
 
   const handleTodoEdit = (todo: TodoInterface) => {
@@ -41,8 +47,8 @@ export const useTodosScreenModel = () => {
 
   const handleTodoEditSubmit = () => {
     if (todo.title.length === 0 || !editedTodo) return
-    dispatch(editTodo(todo))
-    setTodo({ title: '' } as TodoInterface)
+    dispatch(todosEditAsync(todo))
+    setTodo(todoInitialState)
     setEditedTodo(undefined)
   }
 
