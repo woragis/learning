@@ -1,9 +1,19 @@
-import { DeleteResponse, TodoRepsonse } from '@/src/types/response.types'
+import {
+  DeleteResponse,
+  TodoRepsonse,
+  TodosRepsonse,
+} from '@/src/types/response.types'
 import { TodoInterface } from '@/src/types/todo.types'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 const BASE_URL = 'http://localhost:8080/todos'
+
+export const todosFetchAsync = createAsyncThunk('todos/fetch', async () => {
+  const response = await axios.get<TodosRepsonse>(`${BASE_URL}/`)
+
+  return response.data.data
+})
 
 export const todosAddAsync = createAsyncThunk(
   'todos/add',
