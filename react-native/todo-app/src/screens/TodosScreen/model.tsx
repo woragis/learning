@@ -10,11 +10,18 @@ import { useState } from 'react'
 
 export const useTodosScreenModel = () => {
   const { todos, loading, error } = useAppSelector((state) => state.todos)
+  const todoInitialState: TodoInterface = {
+    id: '',
+    title: '',
+    description: '',
+    completed: false,
+    author_id: '',
+  }
 
-  const [todo, setTodo] = useState<TodoInterface>({} as TodoInterface)
+  const [todo, setTodo] = useState<TodoInterface>(todoInitialState)
 
   const [editedTodo, setEditedTodo] = useState<TodoInterface | undefined>(
-    {} as TodoInterface
+    undefined
   )
 
   const handleTodoChange = (userText: string) => {
@@ -26,7 +33,7 @@ export const useTodosScreenModel = () => {
     if (todo.title.length === 0) return
     // dispatch(addTodo(todo))
     dispatch(todosAddAsync(todo))
-    setTodo({ id: '', title: '' })
+    setTodo(todoInitialState)
   }
 
   const handleTodoDelete = (todo: TodoInterface) => {
@@ -43,7 +50,7 @@ export const useTodosScreenModel = () => {
     if (todo.title.length === 0 || !editedTodo) return
     // dispatch(editTodo(editedTodo))
     dispatch(todosEditAsync(todo))
-    setTodo({ id: '', title: '' })
+    setTodo(todoInitialState)
     setEditedTodo(undefined)
   }
 
