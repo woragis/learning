@@ -15,5 +15,15 @@ public class Main {
 
         System.out.println("\nCar 3:");
         car3.describeCar();
+
+        Customer customer1 = new Customer();
+        Customer customer2 = new Customer("Jezreel");
+        Customer customer3 = new Customer("Israel", "israel@gmail.com");
+        Customer customer4 = new Customer("Jefferson", "jefferson@gmail.com", 2000);
+
+        customer1.describeCustomer(1);
+        customer2.describeCustomer(2);
+        customer3.describeCustomer(3);
+        customer4.describeCustomer(4);
     }
 }
