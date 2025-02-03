@@ -10,9 +10,13 @@ queue;
 
 int main(void)
 {
+    // enqueue: add a new element to the end of the queue
+    // dequeue: remove the oldest element from the front of the queue
     queue myQueue;
 }
 
-void add(queue* q, int data) {}
+void enqueue(queue* q, int data) {}
 
-void pop(queue* q) {}
+int dequeue(queue* q) {
+    return 1;
+}
