@@ -2,6 +2,7 @@ import { TodoListInterface } from '@/src/types/todo.types'
 import { useTodosScreenModel } from './model'
 import {
   FlatList,
+  Modal,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -13,13 +14,15 @@ import { IconButton } from 'react-native-paper'
 
 export const TodosScreenView = ({
   editedTodo,
+  error,
   handleTodoChange,
   handleTodoDelete,
   handleTodoEdit,
   handleTodoEditSubmit,
   handleTodoSubmit,
+  loading,
   todo,
-  todoList,
+  todos,
 }: ReturnType<typeof useTodosScreenModel>) => {
   const renderTodos = ({ item, index }: TodoListInterface) => {
     return (
@@ -35,7 +38,7 @@ export const TodosScreenView = ({
         <IconButton
           icon='trash-can'
           iconColor='#fff'
-          onPress={() => handleTodoDelete(item.id)}
+          onPress={() => handleTodoDelete(item)}
         />
         <Text style={styles.todoListText}>{item.title}</Text>
       </View>
@@ -50,7 +53,7 @@ export const TodosScreenView = ({
         <TextInput
           style={styles.textInput}
           placeholder='Add a task'
-          value={todo}
+          value={todo.title}
           onChangeText={handleTodoChange}
         />
 
@@ -72,10 +75,16 @@ export const TodosScreenView = ({
 
         {/* Render todo list */}
         <FlatList
-          data={todoList}
+          data={todos}
           renderItem={renderTodos}
         />
       </View>
+      <Modal visible={error ? true : false}>
+        <Text>{error}</Text>
+      </Modal>
+      <Modal visible={loading}>
+        <Text>Loading</Text>
+      </Modal>
     </SafeAreaView>
   )
 }
