@@ -1,3 +1,6 @@
+import java.io.File;
+import java.util.Scanner;
+
 public class Flow {
     public static void main(String[] args) {
         // Switch cases can be used for:
@@ -5,9 +8,23 @@ public class Flow {
         // String
         // Enum
 
+        try {
+            String myName = new String("Jezreel");
+            System.out.println(myName);
+        } catch (Exception e) {
+            System.err.println(e);
+        } finally {
+            System.out.println("End");
+            System.exit(0);
+        }
         int myVal = 4;
         oldSwitch(myVal);
         System.out.println("Month 5 is in the : " + monthQuarter(8) + " quarter of the year");
+    }
+
+    public static void scanStdin() {
+        // Scanner scanner = new Scanner(new File("../Main.java"));
+        Scanner scanner = new Scanner(System.in);
     }
 
     public static void oldSwitch(int val) {
