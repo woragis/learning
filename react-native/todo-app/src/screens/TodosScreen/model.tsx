@@ -9,7 +9,6 @@ import {
   todosEditAsync,
   todosFetchAsync,
 } from '@/src/redux/todos/thunks'
-import Toast from 'react-native-toast-message'
 
 export const useTodosScreenModel = () => {
   const dispatch = useAppDispatch()
@@ -43,12 +42,6 @@ export const useTodosScreenModel = () => {
       .unwrap()
       .then(() => {
         // notification service
-        console.log('showing toast')
-        Toast.show({
-          type: 'success',
-          text1: 'Add Success',
-          text2: 'Successfully added todo',
-        })
       })
     setTodo(todoInitialState)
   }
@@ -58,11 +51,6 @@ export const useTodosScreenModel = () => {
       .unwrap()
       .then(() => {
         // notification service
-        Toast.show({
-          type: 'success',
-          text1: 'Delete Success',
-          text2: 'Successfully deleted todo',
-        })
       })
   }
 
@@ -77,11 +65,6 @@ export const useTodosScreenModel = () => {
       .unwrap()
       .then(() => {
         // notification service
-        Toast.show({
-          type: 'success',
-          text1: 'Edit Success',
-          text2: 'Successfully edited todo',
-        })
       })
     setTodo(todoInitialState)
     setEditedTodo(undefined)

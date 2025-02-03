@@ -7,6 +7,7 @@ import {
 } from '@reduxjs/toolkit'
 import { TODOS_BASE_URL } from '.'
 import { TodosState } from '@/src/types/redux.types'
+import axios from 'axios'
 
 export const todosAddAsync = createAsyncThunk(
   'todos/add',

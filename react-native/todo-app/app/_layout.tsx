@@ -13,7 +13,6 @@ import 'react-native-reanimated'
 import { useColorScheme } from '@/src/hooks/useColorScheme'
 import { Provider } from 'react-redux'
 import store from '@/src/redux/store'
-import Toast from 'react-native-toast-message'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
@@ -37,7 +36,6 @@ export default function RootLayout() {
   return (
     <Provider store={store}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Toast />
         <Stack>
           <Stack.Screen
             name='(tabs)'
