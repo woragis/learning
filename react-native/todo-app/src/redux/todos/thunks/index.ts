@@ -1,13 +1,17 @@
-import addAsyncBulider from './add'
-import deleteAsyncBulider from './delete'
-import editAsyncBulider from './edit'
-import fetchAsyncBulider from './fetch'
+import addAsyncBulider, { todosAddAsync } from './add'
+import deleteAsyncBulider, { todosDeleteAsync } from './delete'
+import editAsyncBulider, { todosEditAsync } from './edit'
+import fetchAsyncBulider, { todosFetchAsync } from './fetch'
 
 export const TODOS_BASE_URL = 'http://localhost:8080/todos'
 
 export {
   addAsyncBulider,
-  editAsyncBulider,
   deleteAsyncBulider,
+  editAsyncBulider,
   fetchAsyncBulider,
+  todosAddAsync,
+  todosDeleteAsync,
+  todosEditAsync,
+  todosFetchAsync,
 }

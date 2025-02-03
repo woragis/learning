@@ -6,7 +6,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { TODOS_BASE_URL } from '.'
 
-const todosDeleteAsync = createAsyncThunk(
+export const todosDeleteAsync = createAsyncThunk(
   'todos/delete',
   async (todo: TodoInterface) => {
     await axios.delete<DeleteResponse>(`${TODOS_BASE_URL}/${todo.id}`)

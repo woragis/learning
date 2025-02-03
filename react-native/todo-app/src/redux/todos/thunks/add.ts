@@ -8,7 +8,7 @@ import {
 import { TODOS_BASE_URL } from '.'
 import { TodosState } from '@/src/types/redux.types'
 
-const todosAddAsync = createAsyncThunk(
+export const todosAddAsync = createAsyncThunk(
   'todos/add',
   async (todo: TodoInterface) => {
     const response = await axios.post<TodoRepsonse>(`${TODOS_BASE_URL}/`, todo)

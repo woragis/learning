@@ -4,7 +4,7 @@ import { TODOS_BASE_URL } from '.'
 import { TodosState } from '@/src/types/redux.types'
 import { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit'
 
-const todosFetchAsync = createAsyncThunk('todos/fetch', async () => {
+export const todosFetchAsync = createAsyncThunk('todos/fetch', async () => {
   const response = await axios.get<TodosRepsonse>(`${TODOS_BASE_URL}/`)
 
   return response.data.data
