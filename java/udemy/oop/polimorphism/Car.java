@@ -15,6 +15,20 @@ public class Car {
         this.convertible = convertible;
     }
 
+    // Constructor Overloading
+    public Car(String make, String model) {
+        this(make, model, "Black", 4, false);
+    }
+
+    // Constructor Overloading
+    public Car(String make, String model, String color) {
+        setMake(make);
+        setModel(model);
+        setColor(color);
+        setDoors(4);
+        setConvertible(false);
+    }
+
     public String getMake() {
         return make;
     }
