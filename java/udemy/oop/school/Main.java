@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
 
         for (int i = 0; i < 5; i++) {
-            Student s = new Student("09984" + i,
+            LPAStudent s = new LPAStudent("09984" + i,
                     switch (i) {
                         case 0 -> "Mary";
                         case 1 -> "Carol";
@@ -18,5 +18,8 @@ public class Main {
 
             System.out.println(s);
         }
+        LPAStudent jezreel = new LPAStudent("1", "Jezreel", "12/03/2004",
+                "ComputerScience - UFBP, Java Masterclass - Udemy, CS50 - Edx");
+        System.out.println(jezreel);
     }
 }
