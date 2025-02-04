@@ -1,4 +1,3 @@
-import java.io.File;
 import java.util.Scanner;
 
 public class Flow {
@@ -23,8 +22,9 @@ public class Flow {
     }
 
     public static void scanStdin() {
-        // Scanner scanner = new Scanner(new File("../Main.java"));
         Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
+        scanner.close();
     }
 
     public static void oldSwitch(int val) {
