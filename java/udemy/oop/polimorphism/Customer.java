@@ -50,10 +50,16 @@ public class Customer {
     }
 
     public String describeCustomer(int customerNumber) {
-        String result = "Customer " + customerNumber + " information:\n\tName: " + this.name + "\n\tEmail: "
-                + this.email
-                + "\n\tCredit Limit: "
-                + this.creditLimit + ".";
+        String customerPresentation = String.format("Customer %x:\n", customerNumber);
+        String customerName = String.format("\tName: '%s'.\n", this.name);
+        String customerEmail = String.format("\tEmail: '%s'.\n", this.email);
+        String customerCredit = String.format("\tCredit: '%.2f'.\n", this.creditLimit);
+        String result = String.format(
+                "%s %s %s %s",
+                customerPresentation,
+                customerName,
+                customerEmail,
+                customerCredit);
         System.out.println(result);
         return result;
     }
