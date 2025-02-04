@@ -1,9 +1,9 @@
 package oop.polimorphism;
 
 public class Customer {
-    String name;
-    String email;
-    double creditLimit;
+    private String name;
+    private String email;
+    private double creditLimit;
 
     public Customer() {
         this("User");
