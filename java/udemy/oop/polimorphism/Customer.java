@@ -49,7 +49,7 @@ public class Customer {
         this.creditLimit = creditLimit;
     }
 
-    public String describeCustomer(int customerNumber) {
+    public void describeCustomer(int customerNumber) {
         String customerPresentation = String.format("Customer %x:\n", customerNumber);
         String customerName = String.format("\tName: '%s'.\n", this.name);
         String customerEmail = String.format("\tEmail: '%s'.\n", this.email);
@@ -61,7 +61,6 @@ public class Customer {
                 customerEmail,
                 customerCredit);
         System.out.println(result);
-        return result;
     }
 
 }
