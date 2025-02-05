@@ -21,7 +21,7 @@ def read_file(file_path: str) -> List[str]:
 def append_file(file_path: str, inputs: List[str]) -> None:
     with open(file_path, 'a') as file:
         for input in inputs:
-            file.write(input)
+            file.write(f'{input}\n')
     return
 
 
