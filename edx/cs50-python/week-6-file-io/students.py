@@ -1,4 +1,4 @@
-from typing import List
+from typing import Dict, List
 from names import read_file, append_file
 
 students_inputs: List[str] = []
@@ -19,11 +19,17 @@ def add_student():
 
 my_file = read_file(FILE_NAME)
 
-students: List[str] = []
+students: List[Dict[str, str]] = []
 for line in my_file:
-    students.append(line)
+    name, house = line.split(',')
+    student: Dict[str, str] = {'name': name, 'house': house}
+    students.append(student)
 
-for student in sorted(students):
+
+def get_name(student: Dict[str, str]):
+    return student['name']
+
+
+for student in sorted(students, key=get_name):
     # Transform CSV string into a 2 dimensional row
-    name, house = student.split(',')
-    print(f'{name} is in {house}')
+    print(f'{student['name']} is in {student['house']}')
