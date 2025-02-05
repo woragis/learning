@@ -30,6 +30,6 @@ def get_name(student: Dict[str, str]):
     return student['name']
 
 
-for student in sorted(students, key=get_name):
+for student in sorted(students, key=lambda student: student['name']):
     # Transform CSV string into a 2 dimensional row
     print(f'{student['name']} is in {student['house']}')
