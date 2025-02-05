@@ -1,16 +1,18 @@
 def main():
-    name, house = get_student()
-    print(f'{name} is from {house}')
+    student = get_student()
+    if student['name'] == 'Padma':
+        student['house'] = 'Ravenclaw'
+    print(f'{student['name']} is from {student['house']}')
 
 
 def get_student():
     name = get_name()
     house = get_house()
-    return name, house
+    return {'name': name, 'house': house}
 
 
-def get_name(): return input('Name: ')
-def get_house(): return input('House: ')
+def get_name(): return input('Name: ').capitalize()
+def get_house(): return input('House: ').capitalize()
 
 
 if __name__ == '__main__':
