@@ -8,6 +8,12 @@ class Student:
     def __str__(self) -> str:
         return f'{self.name} is from {self.house}'
 
+    @classmethod
+    def get(cls):
+        name = input('Name: ').lower().title()
+        house = input('House: ').lower()
+        return cls(name, house)
+
     @property
     def name(self):
         return self._name
@@ -30,14 +36,8 @@ class Student:
 
 
 def main():
-    student = get_student()
+    student = Student.get()
     print(student)
-
-
-def get_student():
-    name = input('Name: ').lower().title()
-    house = input('House: ').lower()
-    return Student(name, house)
 
 
 if __name__ == '__main__':
