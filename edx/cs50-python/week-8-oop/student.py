@@ -1,39 +1,43 @@
 class Student:
-    houses = ('slytherin', 'gryffidor', 'ravenclaw', 'hufflepuff')
+    houses = ('slytherin', 'gryffindor', 'ravenclaw', 'hufflepuff')
 
-    def __init__(self, name: str, house: str, patronus: str) -> None:
-        if not name:
-            raise ValueError('Missing name')
-        if house not in self.houses:
-            raise ValueError('Invalid house')
-
+    def __init__(self, name: str, house: str) -> None:
         self.name: str = name
-        self.house = house
-        self.patronus = patronus
+        self.house: str = house
 
     def __str__(self) -> str:
-        return f'{self.name} is from {self.house} and has {self.patronus} as patronus'
+        return f'{self.name} is from {self.house}'
 
-    def charm(self):
-        match self.patronus:
-            case 'Stag': return 'horse'
-            case 'Otter': return 'lagosta'
-            case 'Jack Russell Terrier': return 'dog'
-            case _: return 'pencil'
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name: str):
+        if not name:
+            raise ValueError('Missing name')
+        self._name = name
+
+    @property
+    def house(self):
+        return self._house
+
+    @house.setter
+    def house(self, house: str):
+        if house not in self.houses:
+            raise ValueError('Invalid house')
+        self._house = house
 
 
 def main():
     student = get_student()
-    print('Expectro Patronum!')
-    print(student.charm())
     print(student)
 
 
 def get_student():
-    name = input('Name: ')
-    house = input('House: ')
-    patronus = input('Patronus: ')
-    return Student(name, house, patronus)
+    name = input('Name: ').lower().title()
+    house = input('House: ').lower()
+    return Student(name, house)
 
 
 if __name__ == '__main__':
