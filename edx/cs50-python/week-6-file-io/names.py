@@ -14,7 +14,7 @@ def read_file(file_path: str) -> List[str]:
     lines: List[str] = []
     with open(file_path, 'r') as file:
         for line in file:
-            lines.append(line)
+            lines.append(line.rstrip())
     return lines
 
 
