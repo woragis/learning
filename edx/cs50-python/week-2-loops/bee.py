@@ -15,6 +15,9 @@ def main():
             points = WORDS.pop(guess)
             print(f'Good job! You scored {points} points.')
 
+    for word, points in WORDS.items():
+        print(f'{word} had worth {points} points.')
+
     print('Game!')
 
 
