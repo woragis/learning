@@ -1,8 +1,7 @@
 def main():
     coins = [100, 50, 25]
-    tot = total(coins[0], coins[1], coins[2])
+    tot = total(*coins)
     print(f'Total: {tot} knuts')
-    ...
 
 
 def total(galleons: int, sickles: int, knuts: int):
