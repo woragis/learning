@@ -8,7 +8,7 @@ class Package:
         self.weight = weight
 
     def __str__(self):
-        return f'Package {self.number}: {self.sender} to {self.recipient}. weights={self.weight}'
+        return f'Package {self.number}: {self.sender} to {self.recipient}, {self.weight}kg'
 
 
 def main():
