@@ -1,7 +1,11 @@
 def main():
-    coins = [100, 50, 25]
-    tot = total(*coins)
-    print(f'Total: {tot} knuts')
+    coins_list = [100, 50, 25]
+    list_total = total(*coins_list)
+    print(f'Total: {list_total} knuts')
+
+    coins_dict = {'galleons': 100, 'sickles': 50, 'knuts': 25}
+    dict_total = total(**coins_dict)
+    print(f'Total: {dict_total} knuts')
 
 
 def total(galleons: int, sickles: int, knuts: int):
