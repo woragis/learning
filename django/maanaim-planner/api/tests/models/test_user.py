@@ -2,13 +2,13 @@ from django.test import TestCase
 from django.core.exceptions import ValidationError
 from api.models.vehicle import Vehicle
 from api.models.travel import Travel
-from api.models.user import UserRegistration
+from api.models.user import User
 
 
-class UserRegistrationModelTest(TestCase):
+class UserModelTest(TestCase):
     def setUp(self):
         # Create test data
-        self.vehicle = Vehicle.objects.create(name='Van 1', capacity=2)
+        self.vehicle = Vehicle.objects.create(name='Van 1', capacity=4)
         self.travel = Travel.objects.create(
             name='Weekly Travel',
             date='2023-10-15'
@@ -16,7 +16,7 @@ class UserRegistrationModelTest(TestCase):
 
     def test_user_registration_creation(self):
         # Create a user registration
-        registration = UserRegistration.objects.create(
+        registration = User.objects.create(
             name='John Doe',
             username='woragis',
             email='jezreel@gmail.com',
@@ -36,7 +36,7 @@ class UserRegistrationModelTest(TestCase):
 
     def test_user_registration_str_representation(self):
         # Create a user registration
-        registration = UserRegistration.objects.create(
+        registration = User.objects.create(
             name='Jane Doe',
             username='woragis',
             email='admin@admin.com',
@@ -52,8 +52,10 @@ class UserRegistrationModelTest(TestCase):
 
     def test_vehicle_capacity_validation(self):
         # Create a user registration
-        UserRegistration.objects.create(
+        User.objects.create(
             username='User 1',
+            email='user1@email.com',
+            password='password',
             church_name='Mangabeira',
             has_paid=True,
             vehicle=self.vehicle,
@@ -61,8 +63,10 @@ class UserRegistrationModelTest(TestCase):
         )
 
         # Create another registration for the same vehicle and travel
-        UserRegistration.objects.create(
+        User.objects.create(
             username='User 2',
+            email='user2@email.com',
+            password='password',
             church_name='Mangabeira',
             has_paid=True,
             vehicle=self.vehicle,
@@ -71,8 +75,10 @@ class UserRegistrationModelTest(TestCase):
 
         # Attempt to create a third registration (should fail due to capacity)
         with self.assertRaises(ValidationError):
-            registration = UserRegistration(
+            registration = User(
                 username='User 3',
+                email='user3@email.com',
+                password='password',
                 church_name='Mangabeira',
                 has_paid=True,
                 vehicle=self.vehicle,
@@ -82,8 +88,10 @@ class UserRegistrationModelTest(TestCase):
 
     def test_user_registration_without_vehicle(self):
         # Create a user registration without a vehicle
-        registration = UserRegistration.objects.create(
+        registration = User.objects.create(
             username='User 4',
+            email='user4@email.com',
+            password='password',
             church_name='Mangabeira',
             has_paid=False,
             travel=self.travel

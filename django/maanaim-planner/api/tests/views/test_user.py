@@ -5,10 +5,10 @@ from datetime import date
 from uuid import uuid4
 from api.models.travel import Travel
 from api.models.vehicle import Vehicle
-from api.models.user import UserRegistration
+from api.models.user import User
 
 
-class UserRegistrationViewSetTest(APITestCase):
+class UserViewSetTest(APITestCase):
     def setUp(self):
         self.vehicle = Vehicle.objects.create(name="User Bus", capacity=40)
         self.travel = Travel.objects.create(
@@ -20,7 +20,7 @@ class UserRegistrationViewSetTest(APITestCase):
             'username': f'user-{uuid4()}',
             'email': f'user-{uuid4()}@example.com',
         }
-        self.user = UserRegistration.objects.create(
+        self.user = User.objects.create(
             name="John Doe",
             username=self.unique["username"],
             email=self.unique["email"],
@@ -74,5 +74,5 @@ class UserRegistrationViewSetTest(APITestCase):
     def test_delete_user(self):
         response = self.client.delete(self.user_url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertFalse(UserRegistration.objects.filter(
+        self.assertFalse(User.objects.filter(
             id=self.user.id).exists())

@@ -1,8 +1,8 @@
 from rest_framework import viewsets
 from .models.travel import Travel
 from .models.vehicle import Vehicle
-from .models.user import UserRegistration
-from .serializers import VehicleSerializer, TravelSerializer, UserRegistrationSerializer
+from .models.user import User
+from .serializers import VehicleSerializer, TravelSerializer, UserSerializer
 
 
 class VehicleViewSet(viewsets.ModelViewSet):
@@ -15,6 +15,6 @@ class TravelViewSet(viewsets.ModelViewSet):
     serializer_class = TravelSerializer
 
 
-class UserRegistrationViewSet(viewsets.ModelViewSet):
-    queryset = UserRegistration.objects.all()
-    serializer_class = UserRegistrationSerializer
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models.travel import Travel
 from .models.vehicle import Vehicle
-from .models.user import UserRegistration
+from .models.user import User
 
 
 class VehicleSerializer(serializers.ModelSerializer):
@@ -16,7 +16,7 @@ class TravelSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class UserRegistrationSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserRegistration
+        model = User
         fields = '__all__'
