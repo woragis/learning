@@ -4,9 +4,9 @@ from .views import VehicleViewSet, TravelViewSet, UserRegistrationViewSet
 
 # Create a router and register viewsets
 router = DefaultRouter()
-router.register(r'vehicles', VehicleViewSet)
-router.register(r'travels', TravelViewSet)
-router.register(r'users', UserRegistrationViewSet)
+router.register(r'vehicles', VehicleViewSet, basename='vehicle')
+router.register(r'travels', TravelViewSet, basename='travel')
+router.register(r'users', UserRegistrationViewSet, basename='user')
 
 # Define the urlpatterns
 urlpatterns = [
