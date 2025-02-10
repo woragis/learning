@@ -1,7 +1,7 @@
 services:
   db:
     container_name: maanaim-planner-db
-    image: postgresql:16.6
+    image: postgres:16.6
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgrespassword
@@ -11,7 +11,7 @@ services:
     ports:
       - '5432:5432'
     healthcheck:
-      test: ['CMD', 'pg_isready', '-U', 'postgres', '-d', '${PG_DB}']
+      test: ['CMD', 'pg_isready', '-U', 'postgres', '-d', 'maanaim']
       interval: 10s
       retries: 5
       start_period: 5s
