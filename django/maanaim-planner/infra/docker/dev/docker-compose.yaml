@@ -3,9 +3,9 @@ services:
     container_name: maanaim-planner-db
     image: postgresql:16.6
     environment:
-      PG_USER: postgres
-      PG_PASSWORD: postgrespassword
-      PG_DB: maanaim
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+      POSTGRES_DB: maanaim
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
