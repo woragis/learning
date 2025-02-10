@@ -1,7 +1,6 @@
-from datetime import date
-from uuid import uuid4  # Import UUID for unique names
+from uuid import uuid4
 from django.test import TestCase
-from api.models import Vehicle
+from api.models.vehicle import Vehicle
 from api.serializers import VehicleSerializer
 
 

@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.core.exceptions import ValidationError
-from ...models import Vehicle, Travel, UserRegistration
+from api.models.vehicle import Vehicle
+from api.models.travel import Travel
+from api.models.user import UserRegistration
 
 
 class UserRegistrationModelTest(TestCase):

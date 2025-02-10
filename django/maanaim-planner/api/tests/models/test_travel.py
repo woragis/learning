@@ -1,6 +1,6 @@
 from django.test import TestCase
 from datetime import date
-from ...models import Travel
+from api.models.travel import Travel
 
 
 class TravelModelTest(TestCase):

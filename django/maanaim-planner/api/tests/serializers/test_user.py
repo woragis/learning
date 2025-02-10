@@ -1,7 +1,9 @@
 from datetime import date
 from uuid import uuid4
 from django.test import TestCase
-from api.models import UserRegistration, Vehicle, Travel
+from api.models.travel import Travel
+from api.models.vehicle import Vehicle
+from api.models.user import UserRegistration
 from api.serializers import UserRegistrationSerializer
 
 

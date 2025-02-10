@@ -2,7 +2,7 @@ from rest_framework.test import APITestCase
 from rest_framework import status
 from django.urls import reverse
 from datetime import date
-from api.models import Travel
+from api.models.travel import Travel
 
 
 class TravelViewSetTest(APITestCase):

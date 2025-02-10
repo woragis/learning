@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.core.exceptions import ValidationError
-from ...models import Vehicle
+from api.models.vehicle import Vehicle
 
 
 class VehicleModelTest(TestCase):

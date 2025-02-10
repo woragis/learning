@@ -3,7 +3,9 @@ from rest_framework import status
 from django.urls import reverse
 from datetime import date
 from uuid import uuid4
-from api.models import Vehicle, Travel, UserRegistration
+from api.models.travel import Travel
+from api.models.vehicle import Vehicle
+from api.models.user import UserRegistration
 
 
 class UserRegistrationViewSetTest(APITestCase):
@@ -28,8 +30,8 @@ class UserRegistrationViewSetTest(APITestCase):
             vehicle=self.vehicle,
             travel=self.travel
         )
-        self.user_url = reverse("userregistration-detail", args=[self.user.id])
-        self.user_list_url = reverse("userregistration-list")
+        self.user_url = reverse("user-detail", args=[self.user.id])
+        self.user_list_url = reverse("user-list")
 
     def test_list_users(self):
         response = self.client.get(self.user_list_url)

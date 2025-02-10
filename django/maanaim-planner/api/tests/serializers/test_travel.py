@@ -1,6 +1,6 @@
 from datetime import date
 from django.test import TestCase
-from api.models import Travel
+from api.models.travel import Travel
 from api.serializers import TravelSerializer
 
 
