@@ -1,0 +1,1 @@
+{'name': [ErrorDetail(string='vehicle with this name already exists.', code='unique')]}

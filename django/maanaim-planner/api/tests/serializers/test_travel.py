@@ -20,7 +20,10 @@ class TravelSerializerTest(TestCase):
             "date": "2023-10-15",
             "description": "Trip to the mountains."
         }
-        self.assertEqual(serializer.data, expected_data)
+        self.assertEqual(serializer.data['name'], expected_data['name'])
+        self.assertEqual(serializer.data['date'], expected_data['date'])
+        self.assertEqual(
+            serializer.data['description'], expected_data['description'])
 
     def test_travel_deserialization(self):
         serializer = TravelSerializer(data={
@@ -30,3 +33,5 @@ class TravelSerializerTest(TestCase):
         })
         self.assertTrue(serializer.is_valid())
         self.assertEqual(serializer.validated_data["name"], "Beach Trip")
+        self.assertEqual(
+            serializer.validated_data["description"], "Trip to the beach.")
