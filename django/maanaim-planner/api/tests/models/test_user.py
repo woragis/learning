@@ -15,7 +15,10 @@ class UserRegistrationModelTest(TestCase):
     def test_user_registration_creation(self):
         # Create a user registration
         registration = UserRegistration.objects.create(
-            user_name='John Doe',
+            name='John Doe',
+            username='woragis',
+            email='jezreel@gmail.com',
+            password='password',
             church_name='Mangabeira',
             has_paid=True,
             vehicle=self.vehicle,
@@ -23,7 +26,7 @@ class UserRegistrationModelTest(TestCase):
         )
 
         # Check if the registration was created successfully
-        self.assertEqual(registration.user_name, 'John Doe')
+        self.assertEqual(registration.name, 'John Doe')
         self.assertEqual(registration.church_name, 'Mangabeira')
         self.assertTrue(registration.has_paid)
         self.assertEqual(registration.vehicle, self.vehicle)
@@ -32,7 +35,10 @@ class UserRegistrationModelTest(TestCase):
     def test_user_registration_str_representation(self):
         # Create a user registration
         registration = UserRegistration.objects.create(
-            user_name='Jane Doe',
+            name='Jane Doe',
+            username='woragis',
+            email='admin@admin.com',
+            password='password',
             church_name='Mangabeira',
             has_paid=False,
             vehicle=self.vehicle,
@@ -45,7 +51,7 @@ class UserRegistrationModelTest(TestCase):
     def test_vehicle_capacity_validation(self):
         # Create a user registration
         UserRegistration.objects.create(
-            user_name='User 1',
+            username='User 1',
             church_name='Mangabeira',
             has_paid=True,
             vehicle=self.vehicle,
@@ -54,7 +60,7 @@ class UserRegistrationModelTest(TestCase):
 
         # Create another registration for the same vehicle and travel
         UserRegistration.objects.create(
-            user_name='User 2',
+            username='User 2',
             church_name='Mangabeira',
             has_paid=True,
             vehicle=self.vehicle,
@@ -64,7 +70,7 @@ class UserRegistrationModelTest(TestCase):
         # Attempt to create a third registration (should fail due to capacity)
         with self.assertRaises(ValidationError):
             registration = UserRegistration(
-                user_name='User 3',
+                username='User 3',
                 church_name='Mangabeira',
                 has_paid=True,
                 vehicle=self.vehicle,
@@ -75,7 +81,7 @@ class UserRegistrationModelTest(TestCase):
     def test_user_registration_without_vehicle(self):
         # Create a user registration without a vehicle
         registration = UserRegistration.objects.create(
-            user_name='User 4',
+            username='User 4',
             church_name='Mangabeira',
             has_paid=False,
             travel=self.travel
