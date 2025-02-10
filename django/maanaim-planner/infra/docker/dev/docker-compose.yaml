@@ -7,7 +7,7 @@ services:
       POSTGRES_PASSWORD: postgrespassword
       POSTGRES_DB: maanaim
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - maanaim_data:/var/lib/postgresql/data
     ports:
       - '5432:5432'
     healthcheck:
@@ -22,5 +22,5 @@ networks:
   maanaim_network:
     driver: bridge
 volumes:
-  postgres_data:
+  maanaim_data:
     driver: local
