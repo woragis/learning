@@ -18,9 +18,12 @@ services:
       timeout: 5s
     networks:
       - maanaim_network
+
 networks:
   maanaim_network:
+    name: maanaim_network
     driver: bridge
+
 volumes:
   maanaim_data:
     name: maanaim-data
