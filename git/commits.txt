@@ -1,0 +1,15 @@
+```
+git commit -m "title of commit" -m "description of commit (optional)"
+`
+
+Opens the code editor (vim) to add a commit message
+```
+git commit
+```
+
+Lets me add changes to the last commit
+Generates a new hash to the commit, but the commit tree is not changed
+```
+git commit --amend
+```
+
