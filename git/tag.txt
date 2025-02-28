@@ -1,0 +1,29 @@
+
+Git tag
+shows tags of the repo
+
+Git tag -l "v17*"
+searches tags with v17 in the start
+
+Git tag -l "*beta*"
+searches tags with beta somewhere in the tag name
+
+git tag v1.0.0
+creates a tag
+
+git tag -d tagname
+
+
+git tag -a v1.0.0
+git tag v1.0.0 -m message
+gives a message to the tag
+
+git tag show v1.0.0
+shows details and metadata about the tag
+
+git tag tagname commithash
+git tag tagname commithash -f (if tag already exists)
+
+
+push tags:
+git push origin --tags
