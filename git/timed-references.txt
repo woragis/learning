@@ -1,0 +1,8 @@
+git reflog master@{one.week.ago}
+
+
+git checkout bugfix@{2.days.ago}
+
+
+git diff main@{0} main@{yesterday}
+
