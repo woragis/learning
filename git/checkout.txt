@@ -1,0 +1,12 @@
+With checkout I can time travel
+
+Takes me back one commit
+```
+git checkout HEAD~1
+````
+
+When I do this I can continue my development without being in the DETACHED HEAD state
+```
+git switch -c new-branch-from-old-commit
+```
+
