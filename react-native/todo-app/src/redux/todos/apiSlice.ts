@@ -44,3 +44,10 @@ const todosApi = createApi({
 })
 
 export default todosApi
+export const {
+  useGetTodosQuery,
+  useGetTodoByIdQuery,
+  usePostTodoMutation,
+  usePutTodoMutation,
+  useDeleteTodoMutation,
+} = todosApi
