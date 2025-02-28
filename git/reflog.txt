@@ -1,0 +1,11 @@
+git reflog show HEAD
+shows history of refs of HEAD
+refs branches, and maybe commits (on detached head state)
+
+git reflog show branchname
+shows history of refs of name
+usually refs the commits right?
+
+
+git checkout HEAD~1 # goes one commit ago
+git checkout HEAD@{1} # goes one ref ago, so maybe a commit or maybe a branch
