@@ -804,6 +804,10 @@ body {
     margin-left: 6rem;
   }
 
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
