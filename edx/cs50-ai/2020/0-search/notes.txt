@@ -1,0 +1,65 @@
+My notes about search
+
+Search can be used for
+Mazes
+That game that you need to organize numbers with just one space free
+
+Terminology
+Agent: entity that perceives its environment and acts upon that environment
+State: a configuration of the agent in the environment
+Initial state: the first state
+Actions: choices that can be executed in the states
+Transition model: description of what state results of an action in a state
+State space: the set of all reachable state from the initial state by any sequence of actions
+Goal test: way to determine whether a given state is a goal state
+Path cost: numerical cost associated with a given path
+Solution: a sequence of actions that has get to the goal state
+Optimal Solution: a solution that has the lowest path cost among all solutions
+
+Node: a datas tructure that keeps track of:
+  - a state
+  - a parent
+  - an action
+  - a path cost
+
+Approach
+1. Start with a frontier that contains the initial state
+2. Repeat:
+  if frontier is empty, then no solution.
+  remove a node from the frontier.
+  if node contains goal state, return the solution.
+  Expanded node, add resulting nodes to the frontier.
+Revised Approach
+1. Start with a frontier that contains the initial state
+2. Start with an empty explored set
+2. Repeat:
+  if frontier is empty, then no solution.
+  remove a node from the frontier.
+  if node contains goal state, return the solution.
+  Add node to the explored set
+  Expanded node, add resulting nodes to the frontier if they aren't already in the frontier or the explored set.
+
+
+Structs
+
+Depth-first Search
+- Frontier: Stack
+- Explored Set: Stack?
+
+Breadth-first search
+- Frontier: Queue
+- Explored Set: Stack?
+
+
+A* Search
+*come back to the class to write about it*
+
+Adversiarial Search
+like a tic-tac-toe game
+Algorithm: minimax
+AlphaBeta Pruning (helps the efficiency of searching the min and max game choices)
+
+Depth-limited Minimax
+for chess like games
+
+Evaluation function
