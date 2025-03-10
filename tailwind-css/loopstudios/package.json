@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "license": "ISC",
-  "author": "",
+  "author": "woragis",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tailwindcss -i ./input.css -o ./styles/index.css",
+    "dev": "tailwindcss -i ./input.css -o ./styles/index.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.0.12"
   }
 }
