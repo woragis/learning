@@ -23,4 +23,18 @@ public class Exercises {
         System.out.println("A diferenca para o salario minimo é: " + result);
         return result;
     }
+
+    public static int[] rand() {
+        return rand(3);
+    }
+
+    public static int[] rand(int length) {
+        int result[] = new int[length];
+
+        for (int i = 0; i < length; i++) {
+            result[i] = (int) Math.random() * 100;
+        }
+
+        return result;
+    }
 }
