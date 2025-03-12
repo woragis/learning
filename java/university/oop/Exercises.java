@@ -25,10 +25,14 @@ public class Exercises {
     }
 
     public static int[] rand() {
+        // Slide: 2
+        // Page: 37
         return rand(3);
     }
 
     public static int[] rand(int length) {
+        // Slide: 2
+        // Page: 37
         int result[] = new int[length];
 
         for (int i = 0; i < length; i++) {
@@ -36,5 +40,24 @@ public class Exercises {
         }
 
         return result;
+    }
+
+    public static double graphic(Scanner scanner) {
+        // Slide: 2
+        // Page: 40
+        int x1, x2, y1, y2;
+        System.out.println("First coordinate");
+        System.out.print("X: ");
+        x1 = Integer.parseInt(scanner.nextLine());
+        System.out.print("Y: ");
+        y1 = Integer.parseInt(scanner.nextLine());
+
+        System.out.println("Second coordinate");
+        System.out.print("X: ");
+        x2 = Integer.parseInt(scanner.nextLine());
+        System.out.print("Y: ");
+        y2 = Integer.parseInt(scanner.nextLine());
+
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
 }
