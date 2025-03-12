@@ -3,13 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
+    <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
     <link
       rel="shortcut icon"
       type="image/png"
-      href="images/favicon-32x32.png"
+      href="assets/images/favicon-32x32.png"
     />
     <link
       rel="preconnect"
@@ -50,17 +54,17 @@
           <!-- Left Menu -->
           <div class="hidden space-x-8 font-bold lg:flex">
             <a
-              href="#"
+              href="#features"
               class="text-grayishViolet hover:text-veryDarkViolet"
               >Features</a
             >
             <a
-              href="#"
+              href="#pricing"
               class="text-grayishViolet hover:text-veryDarkViolet"
               >Pricing</a
             >
             <a
-              href="#"
+              href="#resources"
               class="text-grayishViolet hover:text-veryDarkViolet"
               >Resources</a
             >
@@ -147,7 +151,7 @@
           </p>
           <div class="mx-auto lg:mx-0">
             <a
-              href="#"
+              href="#shorten-view"
               class="py-5 px-10 text-2xl font-bold text-white bg-cyan rounded-full lg:py-4 hover:opacity-70"
               >Get Started</a
             >
@@ -155,7 +159,10 @@
         </div>
 
         <!-- Image -->
-        <div class="mb-24 mx-auto md:w-180 lg:mb-0 lg:w-1/2">
+        <div
+          id="shorten-view"
+          class="mb-24 mx-auto md:w-180 lg:mb-0 lg:w-1/2"
+        >
           <img
             src="assets/images/illustration-working.svg"
             alt="Illustration of Someone working"
@@ -174,7 +181,7 @@
         <!-- Form -->
         <form
           id="link-form"
-          class="relative flex flex-col w-full p-10 mt-20 space-y-4 bg-darkViolet rounded-lg md:flex-row md:space-y-0 md:space-x-3"
+          class="relative flex flex-col w-full p-10 -mt-20 space-y-4 bg-darkViolet rounded-lg md:flex-row md:space-y-0 md:space-x-3"
         >
           <input
             type="text"
@@ -256,25 +263,23 @@
       </div>
     </section>
 
-    <!-- Stats Section -->
-    <section
-      id="stats"
-      class="py-24 bg-gray-100"
-    >
-      <div class="container mx-auto-px-3">
-        <h2 class="text-4xl mb-6 font-bold text-center">Advanced Statistics</h2>
-        <p class="max-w-xs mx-auto text-center text-gray-400 md:max-w-md">
-          Track how your links are performing across the web with our advanced
-          statistics dashboard.
-        </p>
-      </div>
-    </section>
-
     <!-- Feature Box Section -->
     <section
       id="features"
       class="pb-32 bg-gray-100"
     >
+      <!-- Stats Section -->
+      <section>
+        <div class="py-24 container mx-auto-px-3">
+          <h2 class="text-4xl mb-6 font-bold text-center">
+            Advanced Statistics
+          </h2>
+          <p class="max-w-xs mx-auto text-center text-gray-400 md:max-w-md">
+            Track how your links are performing across the web with our advanced
+            statistics dashboard.
+          </p>
+        </div>
+      </section>
       <div
         class="relative container flex flex-col items-start px-6 mx-auto md:flex-row md:space-x-7"
       >
@@ -283,7 +288,7 @@
           class="hidden absolute top-24 w-10/12 left-16 h-3 bg-cyan md:block"
         ></div>
         <!-- Vertical Line -->
-        <div class="absolute w-2 h-full -ml-1 bg-cyan md:hidden"></div>
+        <div class="absolute w-2 left-1/2 h-full -ml-1 bg-cyan md:hidden"></div>
 
         <!-- Box 1 -->
         <div
@@ -402,7 +407,7 @@
           class="flex flex-col space-y-16 md:space-x-20 md:flex-row md:space-y-0"
         >
           <!-- Menu 1 -->
-          <div class="flex flex-clo items-center w-full md:items-start">
+          <div class="flex flex-col items-center w-full md:items-start">
             <div class="mb-5 font-bold text-white capitalize">Features</div>
             <div class="flex flex-col items-center space-y-3 md:items-start">
               <a
@@ -424,7 +429,7 @@
           </div>
 
           <!-- Menu 2 -->
-          <div class="flex flex-clo items-center w-full md:items-start">
+          <div class="flex flex-col items-center w-full md:items-start">
             <div class="mb-5 font-bold text-white capitalize">Resources</div>
             <div class="flex flex-col items-center space-y-3 md:items-start">
               <a
@@ -446,7 +451,7 @@
           </div>
 
           <!-- Menu 3 -->
-          <div class="flex flex-clo items-center w-full md:items-start">
+          <div class="flex flex-col items-center w-full md:items-start">
             <div class="mb-5 font-bold text-white capitalize">Company</div>
             <div class="flex flex-col items-center space-y-3 md:items-start">
               <a

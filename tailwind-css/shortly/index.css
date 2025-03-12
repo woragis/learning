@@ -645,6 +645,10 @@ video {
   margin-left: -2.5rem;
 }
 
+.-mt-20 {
+  margin-top: -5rem;
+}
+
 .mb-24 {
   margin-bottom: 6rem;
 }
@@ -659,10 +663,6 @@ video {
 
 .mb-6 {
   margin-bottom: 1.5rem;
-}
-
-.mt-20 {
-  margin-top: 5rem;
 }
 
 .mt-24 {
@@ -1001,6 +1001,10 @@ video {
 .placeholder-yellow-500::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(234 179 8 / var(--tw-placeholder-opacity, 1));
+}
+
+* {
+  scroll-behavior: smooth;
 }
 
 #cta {

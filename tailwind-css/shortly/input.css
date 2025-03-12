@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  scroll-behavior: smooth;
+}
+
 #cta {
   background-image: url('assets/images/bg-boost-desktop.svg');
   background-repeat: no-repeat;
