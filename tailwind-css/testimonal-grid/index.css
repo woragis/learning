@@ -688,6 +688,11 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
+.bg-gray-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+}
+
 .p-10 {
   padding: 2.5rem;
 }
@@ -757,6 +762,10 @@ video {
 
   .md\:top-7 {
     top: 1.75rem;
+  }
+
+  .md\:col-span-2 {
+    grid-column: span 2 / span 2;
   }
 
   .md\:row-span-2 {
