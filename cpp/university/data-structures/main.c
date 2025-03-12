@@ -4,6 +4,7 @@
 #include <jansson.h>
 
 #define MAX_CONTACTS 100
+#define MAX_USERS 100
 #define NAME_LENGTH 50
 #define PHONE_LENGTH 15
 #define FILENAME "user_data.json"
@@ -19,24 +20,35 @@ typedef struct {
     int contact_count;
 } User;
 
-void save_user_to_json(User *user) {
-    json_t *root = json_object();
-    json_object_set_new(root, "username", json_string(user->username));
-    json_t *contacts_array = json_array();
+typedef struct {
+    User users[MAX_USERS];
+    int user_count;
+} UserDatabase;
 
-    for (int i = 0; i < user->contact_count; i++) {
-        json_t *contact = json_object();
-        json_object_set_new(contact, "name", json_string(user->contacts[i].name));
-        json_object_set_new(contact, "phone", json_string(user->contacts[i].phone));
-        json_array_append_new(contacts_array, contact);
+void save_users_to_json(UserDatabase *db) {
+    json_t *root = json_array();
+    
+    for (int i = 0; i < db->user_count; i++) {
+        json_t *user_obj = json_object();
+        json_object_set_new(user_obj, "username", json_string(db->users[i].username));
+        json_t *contacts_array = json_array();
+        
+        for (int j = 0; j < db->users[i].contact_count; j++) {
+            json_t *contact_obj = json_object();
+            json_object_set_new(contact_obj, "name", json_string(db->users[i].contacts[j].name));
+            json_object_set_new(contact_obj, "phone", json_string(db->users[i].contacts[j].phone));
+            json_array_append_new(contacts_array, contact_obj);
+        }
+        
+        json_object_set_new(user_obj, "contacts", contacts_array);
+        json_array_append_new(root, user_obj);
     }
-
-    json_object_set_new(root, "contacts", contacts_array);
+    
     json_dump_file(root, FILENAME, JSON_INDENT(4));
     json_decref(root);
 }
 
-void load_user_from_json(User *user) {
+void load_users_from_json(UserDatabase *db) {
     json_t *root;
     json_error_t error;
     root = json_load_file(FILENAME, 0, &error);
@@ -45,30 +57,55 @@ void load_user_from_json(User *user) {
         return;
     }
     
-    json_t *username = json_object_get(root, "username");
-    json_t *contacts_array = json_object_get(root, "contacts");
-    
-    strncpy(user->username, json_string_value(username), NAME_LENGTH - 1);
-    user->contact_count = json_array_size(contacts_array);
-    
-    for (int i = 0; i < user->contact_count; i++) {
-        json_t *contact = json_array_get(contacts_array, i);
-        json_t *name = json_object_get(contact, "name");
-        json_t *phone = json_object_get(contact, "phone");
+    db->user_count = json_array_size(root);
+    for (int i = 0; i < db->user_count; i++) {
+        json_t *user_obj = json_array_get(root, i);
+        json_t *username = json_object_get(user_obj, "username");
+        json_t *contacts_array = json_object_get(user_obj, "contacts");
         
-        strncpy(user->contacts[i].name, json_string_value(name), NAME_LENGTH - 1);
-        strncpy(user->contacts[i].phone, json_string_value(phone), PHONE_LENGTH - 1);
+        strncpy(db->users[i].username, json_string_value(username), NAME_LENGTH - 1);
+        db->users[i].contact_count = json_array_size(contacts_array);
+        
+        for (int j = 0; j < db->users[i].contact_count; j++) {
+            json_t *contact_obj = json_array_get(contacts_array, j);
+            json_t *name = json_object_get(contact_obj, "name");
+            json_t *phone = json_object_get(contact_obj, "phone");
+            
+            strncpy(db->users[i].contacts[j].name, json_string_value(name), NAME_LENGTH - 1);
+            strncpy(db->users[i].contacts[j].phone, json_string_value(phone), PHONE_LENGTH - 1);
+        }
     }
     json_decref(root);
 }
 
-void create_user(User *user) {
-    printf("Enter username: ");
-    fgets(user->username, NAME_LENGTH, stdin);
-    user->username[strcspn(user->username, "\n")] = 0;
-    user->contact_count = 0;
-    save_user_to_json(user);
-    printf("User created successfully!\n");
+void register_user(UserDatabase *db) {
+    if (db->user_count < MAX_USERS) {
+        printf("Enter new username: ");
+        fgets(db->users[db->user_count].username, NAME_LENGTH, stdin);
+        db->users[db->user_count].username[strcspn(db->users[db->user_count].username, "\n")] = 0;
+        db->users[db->user_count].contact_count = 0;
+        db->user_count++;
+        save_users_to_json(db);
+        printf("User registered successfully!\n");
+    } else {
+        printf("User database is full!\n");
+    }
+}
+
+User *login(UserDatabase *db) {
+    char username[NAME_LENGTH];
+    printf("Enter username to login: ");
+    fgets(username, NAME_LENGTH, stdin);
+    username[strcspn(username, "\n")] = 0;
+    
+    for (int i = 0; i < db->user_count; i++) {
+        if (strcmp(db->users[i].username, username) == 0) {
+            printf("Login successful!\n");
+            return &db->users[i];
+        }
+    }
+    printf("User not found.\n");
+    return NULL;
 }
 
 void add_contact(User *user) {
@@ -82,26 +119,10 @@ void add_contact(User *user) {
         user->contacts[user->contact_count].phone[strcspn(user->contacts[user->contact_count].phone, "\n")] = 0;
         
         user->contact_count++;
-        save_user_to_json(user);
         printf("Contact added successfully!\n");
     } else {
         printf("Contact list is full!\n");
     }
-}
-
-void search_contact(User *user) {
-    char search_name[NAME_LENGTH];
-    printf("Enter name to search: ");
-    fgets(search_name, NAME_LENGTH, stdin);
-    search_name[strcspn(search_name, "\n")] = 0;
-
-    for (int i = 0; i < user->contact_count; i++) {
-        if (strcmp(user->contacts[i].name, search_name) == 0) {
-            printf("Contact found - Name: %s, Phone: %s\n", user->contacts[i].name, user->contacts[i].phone);
-            return;
-        }
-    }
-    printf("Contact not found.\n");
 }
 
 void display_user(User *user) {
@@ -113,15 +134,16 @@ void display_user(User *user) {
 }
 
 int main() {
-    User user = {.contact_count = 0};
-    load_user_from_json(&user);
+    UserDatabase db = {.user_count = 0};
+    load_users_from_json(&db);
+    User *current_user = NULL;
     int choice;
     
     while (1) {
         printf("\nMenu:\n");
-        printf("1. Login (Create User)\n");
-        printf("2. Add Contact\n");
-        printf("3. Search Contact\n");
+        printf("1. Register User\n");
+        printf("2. Login\n");
+        printf("3. Add Contact\n");
         printf("4. Display User\n");
         printf("5. Exit\n");
         printf("Enter choice: ");
@@ -131,16 +153,25 @@ int main() {
         
         switch (choice) {
             case 1:
-                create_user(&user);
+                register_user(&db);
                 break;
             case 2:
-                add_contact(&user);
+                current_user = login(&db);
                 break;
             case 3:
-                search_contact(&user);
+                if (current_user) {
+                    add_contact(current_user);
+                    save_users_to_json(&db);
+                } else {
+                    printf("Please login first.\n");
+                }
                 break;
             case 4:
-                display_user(&user);
+                if (current_user) {
+                    display_user(current_user);
+                } else {
+                    printf("Please login first.\n");
+                }
                 break;
             case 5:
                 printf("Exiting...\n");
