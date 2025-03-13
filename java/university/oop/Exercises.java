@@ -100,4 +100,39 @@ public class Exercises {
 
         return;
     }
+
+    public static double jobPromotion() {
+        // Slide: 3
+        // Page: 28
+        Scanner scanner = new Scanner(System.in);
+        String input, oldString, percentString, promotionValueString, updatedSalaryString;
+        double salary, updatedSalary, percent, promotionValue;
+        System.out.println("What\'s your salary: ");
+        input = scanner.nextLine();
+        salary = Double.parseDouble(input);
+        updatedSalary = salary;
+        scanner.close();
+
+        if (salary < 2800) {
+            percent = 1.2;
+        } else if (salary < 7000) {
+            percent = 1.15;
+        } else if (salary < 15000) {
+            percent = 1.1;
+        } else {
+            percent = 1.05;
+        }
+
+        updatedSalary *= percent;
+        promotionValue = updatedSalary - salary;
+
+        oldString = "Old salary: '" + salary + "'\n";
+        percentString = "Promotion percent: '" + percent + "'\n";
+        promotionValueString = "Promotion value: '" + promotionValue + "'\n";
+        updatedSalaryString = "New Salary: '" + updatedSalary + "'\n";
+
+        System.out.println(oldString + percentString + promotionValueString + updatedSalaryString);
+
+        return updatedSalary;
+    }
 }

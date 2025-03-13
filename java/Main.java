@@ -2,8 +2,8 @@ import university.oop.Exercises;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, World!\n");
-        System.out.println("Data types properties:");
+        // System.out.println("Hello, World!\n");
+        // System.out.println("Data types properties:");
         // DataTypes.charDataType();
         // DataTypes.byteDataType();
         // DataTypes.shortDataType();
@@ -12,7 +12,8 @@ public class Main {
         // DataTypes.floatDataType();
         // DataTypes.doubleDataType();
 
-        Exercises.weightOnPlanets();
+        // Exercises.weightOnPlanets();
+        Exercises.jobPromotion();
     }
 
 }
