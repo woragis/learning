@@ -1,5 +1,6 @@
 package university.oop;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Exercises {
@@ -59,5 +60,44 @@ public class Exercises {
         y2 = Integer.parseInt(scanner.nextLine());
 
         return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
+
+    public static void weightOnPlanets() {
+        // Slide: 2
+        // Page: 41
+        // Gravity and Weight exercise
+        Scanner scanner = new Scanner(System.in);
+        String input, name;
+        double weight;
+
+        System.out.println("Digite seu nome: ");
+        input = scanner.nextLine();
+        name = input;
+
+        System.out.println("Digite seu peso: ");
+        input = scanner.nextLine();
+        weight = Double.parseDouble(input);
+        scanner.close();
+
+        User user = new User(name, weight);
+
+        ArrayList<Planet> myPlanets = new ArrayList<Planet>();
+        myPlanets.add(new Planet("mercury", 0.37));
+        myPlanets.add(new Planet("venus", 0.88));
+        myPlanets.add(new Planet("mars", 0.38));
+        myPlanets.add(new Planet("jupiter", 2.64));
+        myPlanets.add(new Planet("satturn", 1.15));
+        myPlanets.add(new Planet("uranium", 1.17));
+
+        int count = myPlanets.size();
+
+        System.out.println(user);
+
+        // Iterate through all Planets
+        for (int i = 0; i < count; i++) {
+            myPlanets.get(i).getWeight(user.weight);
+        }
+
+        return;
     }
 }
