@@ -135,4 +135,34 @@ public class Exercises {
 
         return updatedSalary;
     }
+
+    public static void taxCalculator() {
+        // Slide: 3
+        // Page: 29
+        Scanner scanner = new Scanner(System.in);
+        double salary, ir, inss, totalTax, liquidSalary;
+        System.out.println("What\'s your salary? ");
+        String input = scanner.nextLine();
+        scanner.close();
+        salary = Double.parseDouble(input); // monthly salary
+        // ir = 0.1; // revenue tax
+        inss = 0.1; // retirement tax
+        // double fgts = 0.11; // deposited only by the bank
+
+        if (salary <= 900) {
+            ir = 0;
+        } else if (salary <= 1500) {
+            ir = 0.05;
+        } else if (salary <= 2500) {
+            ir = 0.1;
+        } else {
+            ir = 0.2;
+        }
+
+        totalTax = (salary * ir) + (salary * inss);
+        liquidSalary = salary - totalTax;
+
+        System.out.println("Liquid Salary: " + liquidSalary);
+
+    }
 }

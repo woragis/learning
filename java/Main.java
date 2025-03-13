@@ -13,7 +13,8 @@ public class Main {
         // DataTypes.doubleDataType();
 
         // Exercises.weightOnPlanets();
-        Exercises.jobPromotion();
+        // Exercises.jobPromotion();
+        Exercises.taxCalculator();
     }
 
 }
