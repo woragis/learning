@@ -20,8 +20,14 @@ public class Exercises {
         System.out.println("Qual o seu salario atual? ");
         String input = scanner.nextLine();
         double salary = Double.parseDouble(input);
-        double result = salary - MIN_SALARY;
-        System.out.println("A diferenca para o salario minimo é: " + result);
+        double result = Math.abs(salary - MIN_SALARY);
+        if (salary < MIN_SALARY) {
+            System.out.println("Voce ganha: '" + result + "' a menos que o salario minimo");
+        } else if (salary > MIN_SALARY) {
+            System.out.println("Voce ganha: '" + result + "' a mais que o salario minimo");
+        } else {
+            System.out.println("Voce ganha um salario minimo");
+        }
         return result;
     }
 
@@ -62,11 +68,10 @@ public class Exercises {
         return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
 
-    public static void weightOnPlanets() {
+    public static void weightOnPlanets(Scanner scanner) {
         // Slide: 2
         // Page: 41
         // Gravity and Weight exercise
-        Scanner scanner = new Scanner(System.in);
         String input, name;
         double weight;
 
@@ -77,7 +82,6 @@ public class Exercises {
         System.out.println("Digite seu peso: ");
         input = scanner.nextLine();
         weight = Double.parseDouble(input);
-        scanner.close();
 
         User user = new User(name, weight);
 
@@ -101,17 +105,15 @@ public class Exercises {
         return;
     }
 
-    public static double jobPromotion() {
+    public static double jobPromotion(Scanner scanner) {
         // Slide: 3
         // Page: 28
-        Scanner scanner = new Scanner(System.in);
         String input, oldString, percentString, promotionValueString, updatedSalaryString;
         double salary, updatedSalary, percent, promotionValue;
         System.out.println("What\'s your salary: ");
         input = scanner.nextLine();
         salary = Double.parseDouble(input);
         updatedSalary = salary;
-        scanner.close();
 
         if (salary < 2800) {
             percent = 1.2;
@@ -136,14 +138,12 @@ public class Exercises {
         return updatedSalary;
     }
 
-    public static void taxCalculator() {
+    public static void taxCalculator(Scanner scanner) {
         // Slide: 3
         // Page: 29
-        Scanner scanner = new Scanner(System.in);
         double salary, ir, inss, totalTax, liquidSalary;
         System.out.println("What\'s your salary? ");
         String input = scanner.nextLine();
-        scanner.close();
         salary = Double.parseDouble(input); // monthly salary
         // ir = 0.1; // revenue tax
         inss = 0.1; // retirement tax

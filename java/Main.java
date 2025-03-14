@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 import university.oop.Exercises;
 
 public class Main {
@@ -14,7 +16,11 @@ public class Main {
 
         // Exercises.weightOnPlanets();
         // Exercises.jobPromotion();
-        Exercises.taxCalculator();
+        Scanner scanner = new Scanner(System.in);
+
+        Exercises.taxCalculator(scanner);
+
+        scanner.close();
     }
 
 }
