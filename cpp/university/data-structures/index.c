@@ -37,4 +37,15 @@ int main()
     strcpy(first_contact.name, "Not jezreel anymore");
     printf("Name after: '%s'\n", first_contact.name);
     printf("Phone number: '%s'\n", first_contact.phone);
+
+    Contact second_contact = {.name = "", .phone = ""};
+    printf("Second contact\n");
+    printf("Name Before: '%s'\n", second_contact.name);
+
+    // Get input
+    fgets(second_contact.name, NAME_LENGTH, stdin);
+
+    // Remove \n from new string
+    second_contact.name[strcspn(second_contact.name, "\n")] = 0;
+    printf("Name After: '%s'\n", second_contact.name);
 }
