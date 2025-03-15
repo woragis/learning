@@ -1,0 +1,7 @@
+aws configure
+-- access key
+-- secret access key
+-- zone
+
+test connection
+aws sts --get-identity
