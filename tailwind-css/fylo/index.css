@@ -797,6 +797,10 @@ video {
   margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
 }
 
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
 .rounded-full {
   border-radius: 9999px;
 }
@@ -850,11 +854,11 @@ video {
 }
 
 .bg-curvy-light-mode {
-  background-image: url('../images/bg-curvy-light-mode.svg');
+  background-image: url('./assets/images/bg-curvy-light-mode.svg');
 }
 
 .bg-logo-light-mode {
-  background-image: url('../images/logo-light-mode.svg');
+  background-image: url('./assets/images/logo-light-mode.svg');
 }
 
 .bg-contain {
@@ -997,6 +1001,11 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+.ficon:hover {
+  filter: invert(80%) sepia(37%) saturate(7048%) hue-rotate(132deg)
+    brightness(105%) contrast(104%);
+}
+
 .hover\:scale-95:hover {
   --tw-scale-x: .95;
   --tw-scale-y: .95;
@@ -1050,11 +1059,11 @@ video {
 }
 
 .dark\:bg-curvy-dark-mode:is(.dark *) {
-  background-image: url('../images/bg-curvy-dark-mode.svg');
+  background-image: url('./assets/images/bg-curvy-dark-mode.svg');
 }
 
 .dark\:bg-logo-dark-mode:is(.dark *) {
-  background-image: url('../images/logo-dark-mode.svg');
+  background-image: url('./assets/images/logo-dark-mode.svg');
 }
 
 .dark\:text-gray-400:is(.dark *) {
