@@ -1,183 +1,113 @@
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
-#include <jansson.h>
 
 #define MAX_CONTACTS 100
-#define MAX_USERS 100
 #define NAME_LENGTH 50
 #define PHONE_LENGTH 15
-#define FILENAME "user_data.json"
 
-typedef struct {
+typedef struct
+{
     char name[NAME_LENGTH];
     char phone[PHONE_LENGTH];
 } Contact;
 
-typedef struct {
-    char username[NAME_LENGTH];
+typedef struct
+{
     Contact contacts[MAX_CONTACTS];
     int contact_count;
 } User;
 
-typedef struct {
-    User users[MAX_USERS];
-    int user_count;
-} UserDatabase;
-
-void save_users_to_json(UserDatabase *db) {
-    json_t *root = json_array();
-    
-    for (int i = 0; i < db->user_count; i++) {
-        json_t *user_obj = json_object();
-        json_object_set_new(user_obj, "username", json_string(db->users[i].username));
-        json_t *contacts_array = json_array();
-        
-        for (int j = 0; j < db->users[i].contact_count; j++) {
-            json_t *contact_obj = json_object();
-            json_object_set_new(contact_obj, "name", json_string(db->users[i].contacts[j].name));
-            json_object_set_new(contact_obj, "phone", json_string(db->users[i].contacts[j].phone));
-            json_array_append_new(contacts_array, contact_obj);
-        }
-        
-        json_object_set_new(user_obj, "contacts", contacts_array);
-        json_array_append_new(root, user_obj);
-    }
-    
-    json_dump_file(root, FILENAME, JSON_INDENT(4));
-    json_decref(root);
-}
-
-void load_users_from_json(UserDatabase *db) {
-    json_t *root;
-    json_error_t error;
-    root = json_load_file(FILENAME, 0, &error);
-    if (!root) {
-        printf("No existing user data found.\n");
+void add_contact(User *user)
+{
+    if (user->contact_count >= MAX_CONTACTS)
+    {
+        printf("Lista de contatos está cheia!\n");
         return;
     }
-    
-    db->user_count = json_array_size(root);
-    for (int i = 0; i < db->user_count; i++) {
-        json_t *user_obj = json_array_get(root, i);
-        json_t *username = json_object_get(user_obj, "username");
-        json_t *contacts_array = json_object_get(user_obj, "contacts");
-        
-        strncpy(db->users[i].username, json_string_value(username), NAME_LENGTH - 1);
-        db->users[i].contact_count = json_array_size(contacts_array);
-        
-        for (int j = 0; j < db->users[i].contact_count; j++) {
-            json_t *contact_obj = json_array_get(contacts_array, j);
-            json_t *name = json_object_get(contact_obj, "name");
-            json_t *phone = json_object_get(contact_obj, "phone");
-            
-            strncpy(db->users[i].contacts[j].name, json_string_value(name), NAME_LENGTH - 1);
-            strncpy(db->users[i].contacts[j].phone, json_string_value(phone), PHONE_LENGTH - 1);
+
+    printf("Digite o nome: ");
+    fgets(user->contacts[user->contact_count].name, NAME_LENGTH, stdin);
+    user->contacts[user->contact_count].name[strcspn(user->contacts[user->contact_count].name, "\n")] = '\0';
+
+    printf("Digite o telefone: ");
+    fgets(user->contacts[user->contact_count].phone, PHONE_LENGTH, stdin);
+    user->contacts[user->contact_count].phone[strcspn(user->contacts[user->contact_count].phone, "\n")] = '\0';
+
+    user->contact_count++;
+    printf("Contato adicionado com sucesso!\n");
+}
+
+void search_contact_by_name(User *user)
+{
+    char name[NAME_LENGTH];
+    printf("Digite o nome a buscar: ");
+    fgets(name, NAME_LENGTH, stdin);
+    name[strcspn(name, "\n")] = '\0';
+
+    for (int i = 0; i < user->contact_count; i++)
+    {
+        if (strcmp(user->contacts[i].name, name) == 0)
+        {
+            printf("Contato encontrado: Nome: %s, Telefone: %s\n", user->contacts[i].name, user->contacts[i].phone);
+            return;
         }
     }
-    json_decref(root);
+    printf("Contato não encontrado!\n");
 }
 
-void register_user(UserDatabase *db) {
-    if (db->user_count < MAX_USERS) {
-        printf("Enter new username: ");
-        fgets(db->users[db->user_count].username, NAME_LENGTH, stdin);
-        db->users[db->user_count].username[strcspn(db->users[db->user_count].username, "\n")] = 0;
-        db->users[db->user_count].contact_count = 0;
-        db->user_count++;
-        save_users_to_json(db);
-        printf("User registered successfully!\n");
-    } else {
-        printf("User database is full!\n");
+void search_contact_by_index(User *user)
+{
+    int index;
+    char buffer[10];
+    printf("Digite o índice do contato: ");
+    fgets(buffer, sizeof(buffer), stdin);
+    sscanf(buffer, "%d", &index);
+
+    if (index >= 0 && index < user->contact_count)
+    {
+        printf("Contato encontrado: Nome: %s, Telefone: %s\n", user->contacts[index].name, user->contacts[index].phone);
+    }
+    else
+    {
+        printf("Índice inválido!\n");
     }
 }
 
-User *login(UserDatabase *db) {
-    char username[NAME_LENGTH];
-    printf("Enter username to login: ");
-    fgets(username, NAME_LENGTH, stdin);
-    username[strcspn(username, "\n")] = 0;
-    
-    for (int i = 0; i < db->user_count; i++) {
-        if (strcmp(db->users[i].username, username) == 0) {
-            printf("Login successful!\n");
-            return &db->users[i];
-        }
-    }
-    printf("User not found.\n");
-    return NULL;
-}
+int main()
+{
+    User user = {.contact_count = 0};
+    int option;
+    char buffer[10];
 
-void add_contact(User *user) {
-    if (user->contact_count < MAX_CONTACTS) {
-        printf("Enter contact name: ");
-        fgets(user->contacts[user->contact_count].name, NAME_LENGTH, stdin);
-        user->contacts[user->contact_count].name[strcspn(user->contacts[user->contact_count].name, "\n")] = 0;
-        
-        printf("Enter contact phone: ");
-        fgets(user->contacts[user->contact_count].phone, PHONE_LENGTH, stdin);
-        user->contacts[user->contact_count].phone[strcspn(user->contacts[user->contact_count].phone, "\n")] = 0;
-        
-        user->contact_count++;
-        printf("Contact added successfully!\n");
-    } else {
-        printf("Contact list is full!\n");
-    }
-}
-
-void display_user(User *user) {
-    printf("User: %s\n", user->username);
-    printf("Contacts:\n");
-    for (int i = 0; i < user->contact_count; i++) {
-        printf("%d. Name: %s, Phone: %s\n", i + 1, user->contacts[i].name, user->contacts[i].phone);
-    }
-}
-
-int main() {
-    UserDatabase db = {.user_count = 0};
-    load_users_from_json(&db);
-    User *current_user = NULL;
-    int choice;
-    
-    while (1) {
+    do
+    {
         printf("\nMenu:\n");
-        printf("1. Register User\n");
-        printf("2. Login\n");
-        printf("3. Add Contact\n");
-        printf("4. Display User\n");
-        printf("5. Exit\n");
-        printf("Enter choice: ");
-        
-        scanf("%d", &choice);
-        getchar(); // Clear newline from input buffer
-        
-        switch (choice) {
-            case 1:
-                register_user(&db);
-                break;
-            case 2:
-                current_user = login(&db);
-                break;
-            case 3:
-                if (current_user) {
-                    add_contact(current_user);
-                    save_users_to_json(&db);
-                } else {
-                    printf("Please login first.\n");
-                }
-                break;
-            case 4:
-                if (current_user) {
-                    display_user(current_user);
-                } else {
-                    printf("Please login first.\n");
-                }
-                break;
-            case 5:
-                printf("Exiting...\n");
-                return 0;
-            default:
-                printf("Invalid choice. Try again.\n");
+        printf("1. Adicionar contato\n");
+        printf("2. Buscar contato por nome\n");
+        printf("3. Buscar contato por índice\n");
+        printf("4. Sair\n");
+        printf("Escolha uma opção: ");
+        fgets(buffer, sizeof(buffer), stdin);
+        sscanf(buffer, "%d", &option);
+
+        switch (option)
+        {
+        case 1:
+            add_contact(&user);
+            break;
+        case 2:
+            search_contact_by_name(&user);
+            break;
+        case 3:
+            search_contact_by_index(&user);
+            break;
+        case 4:
+            printf("Saindo...\n");
+            break;
+        default:
+            printf("Opção inválida!\n");
         }
-    }
+    } while (option != 4);
+
+    return 0;
 }
