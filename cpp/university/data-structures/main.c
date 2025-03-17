@@ -1,3 +1,17 @@
+//
+// Projeto criado com o fim de salvar contatos
+//
+// Funcionalidades:
+//  1. Adicionar contato
+//  2. Procurar contato por nome
+//  3. Procurar contato por indice
+//  4. Dados sao salvos persistentemente em forma de binario
+//
+// Autor: Jezreel de Andrade
+// Linkedin: https://www.linkedin.com/in/jezreel-andrade/
+// Github: https://github.com/woragis
+// Github do Projeto: https://github.com/woragis/learning/blob/main/cpp/university/data-structures/main.c
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -7,18 +21,21 @@
 #define PHONE_LENGTH 15
 #define FILE_NAME "contacts.dat"
 
+// Estrutura para armazenar um contato
 typedef struct
 {
     char name[NAME_LENGTH];
     char phone[PHONE_LENGTH];
 } Contact;
 
+// Estrutura para armazenar a lista de contatos
 typedef struct
 {
     Contact contacts[MAX_CONTACTS];
     int contact_count;
 } User;
 
+// Função para salvar os contatos em um arquivo binário
 void save_contacts(User *user)
 {
     FILE *file = fopen(FILE_NAME, "wb");
@@ -31,6 +48,7 @@ void save_contacts(User *user)
     fclose(file);
 }
 
+// Função para carregar os contatos do arquivo binário
 void load_contacts(User *user)
 {
     FILE *file = fopen(FILE_NAME, "rb");
@@ -43,6 +61,7 @@ void load_contacts(User *user)
     fclose(file);
 }
 
+// Função para adicionar um novo contato
 void add_contact(User *user)
 {
     if (user->contact_count >= MAX_CONTACTS)
@@ -51,19 +70,22 @@ void add_contact(User *user)
         return;
     }
 
+    // Captura do nome do contato
     printf("Digite o nome: ");
     fgets(user->contacts[user->contact_count].name, NAME_LENGTH, stdin);
     user->contacts[user->contact_count].name[strcspn(user->contacts[user->contact_count].name, "\n")] = '\0';
 
+    // Captura do telefone do contato
     printf("Digite o telefone: ");
     fgets(user->contacts[user->contact_count].phone, PHONE_LENGTH, stdin);
     user->contacts[user->contact_count].phone[strcspn(user->contacts[user->contact_count].phone, "\n")] = '\0';
 
     user->contact_count++;
-    save_contacts(user);
+    save_contacts(user); // Salva os contatos após adicionar
     printf("Contato adicionado com sucesso!\n");
 }
 
+// Função para buscar um contato pelo nome
 void search_contact_by_name(User *user)
 {
     char name[NAME_LENGTH];
@@ -82,6 +104,7 @@ void search_contact_by_name(User *user)
     printf("Contato não encontrado!\n");
 }
 
+// Função para buscar um contato pelo índice
 void search_contact_by_index(User *user)
 {
     int index;
@@ -103,12 +126,13 @@ void search_contact_by_index(User *user)
 int main()
 {
     User user = {.contact_count = 0};
-    load_contacts(&user);
+    load_contacts(&user); // Carrega os contatos ao iniciar o programa
     int option;
     char buffer[10];
 
     do
     {
+        // Exibição do menu de opções
         printf("\nMenu:\n");
         printf("1. Adicionar contato\n");
         printf("2. Buscar contato por nome\n");
@@ -118,6 +142,7 @@ int main()
         fgets(buffer, sizeof(buffer), stdin);
         sscanf(buffer, "%d", &option);
 
+        // Execução da opção escolhida
         switch (option)
         {
         case 1:
@@ -130,7 +155,7 @@ int main()
             search_contact_by_index(&user);
             break;
         case 4:
-            save_contacts(&user);
+            save_contacts(&user); // Salva os contatos antes de sair
             printf("Saindo...\n");
             break;
         default:
