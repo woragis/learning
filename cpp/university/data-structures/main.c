@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #define MAX_CONTACTS 100
 #define NAME_LENGTH 50
 #define PHONE_LENGTH 15
+#define FILE_NAME "contacts.dat"
 
 typedef struct
 {
@@ -16,6 +18,30 @@ typedef struct
     Contact contacts[MAX_CONTACTS];
     int contact_count;
 } User;
+
+void save_contacts(User *user)
+{
+    FILE *file = fopen(FILE_NAME, "wb");
+    if (!file)
+    {
+        printf("Erro ao salvar os contatos!\n");
+        return;
+    }
+    fwrite(user, sizeof(User), 1, file);
+    fclose(file);
+}
+
+void load_contacts(User *user)
+{
+    FILE *file = fopen(FILE_NAME, "rb");
+    if (!file)
+    {
+        printf("Nenhum contato salvo encontrado. Criando nova lista.\n");
+        return;
+    }
+    fread(user, sizeof(User), 1, file);
+    fclose(file);
+}
 
 void add_contact(User *user)
 {
@@ -34,6 +60,7 @@ void add_contact(User *user)
     user->contacts[user->contact_count].phone[strcspn(user->contacts[user->contact_count].phone, "\n")] = '\0';
 
     user->contact_count++;
+    save_contacts(user);
     printf("Contato adicionado com sucesso!\n");
 }
 
@@ -76,6 +103,7 @@ void search_contact_by_index(User *user)
 int main()
 {
     User user = {.contact_count = 0};
+    load_contacts(&user);
     int option;
     char buffer[10];
 
@@ -102,6 +130,7 @@ int main()
             search_contact_by_index(&user);
             break;
         case 4:
+            save_contacts(&user);
             printf("Saindo...\n");
             break;
         default:
