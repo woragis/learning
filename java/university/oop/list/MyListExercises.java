@@ -91,4 +91,45 @@ public class MyListExercises {
 
         return result;
     }
+
+    public static double fahrenheitToCelsius(double fahrenheit) {
+        double celsius = ((fahrenheit - 32) / 9) * 5;
+        System.out.println("'" + fahrenheit + "' Fahrenheit in Celsius is: '" + celsius + "'");
+        return celsius;
+    }
+
+    public static double celsiusToFahrenheit(double celsius) {
+        double fahrenheit = ((celsius / 5) * 9) + 32;
+        System.out.println("'" + celsius + "' Celsius in Fahrenheit is: '" + fahrenheit + "'");
+        return fahrenheit;
+    }
+
+    public static void calculus(int num1, int num2, double num3) {
+        double first = num1 * num1 * (num2 / 2);
+        double second = (num1 * 3) + num3;
+        double third = Math.pow(num3, 3);
+        System.out.println("First operation result: '" + first + "'");
+        System.out.println("Second operation result: '" + second + "'");
+        System.out.println("Third operation result: '" + third + "'");
+        return;
+    }
+
+    public static double idealWeight(double height) {
+        double weight = (72.7 * height) - 58;
+        System.out.println("Based on your height '" + height + "' your ideal weight is: '" + weight + "'");
+        return weight;
+    }
+
+    public static double idealWeight(double height, String gender) {
+        gender = gender.toLowerCase();
+        if (gender == "male") {
+            return idealWeight(height);
+        } else if (gender == "female") {
+            double weight = (height * 62.1) - 44.7;
+            System.out.println("Based on your height '" + height + "' your ideal weight is: '" + weight + "'");
+            return weight;
+        } else {
+            return 0.0;
+        }
+    }
 }
