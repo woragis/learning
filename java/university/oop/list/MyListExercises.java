@@ -132,4 +132,35 @@ public class MyListExercises {
             return 0.0;
         }
     }
+
+    public static double fisherTax(double weight) {
+        double total = 0.0;
+        double exceeding = weight - 50;
+        if (weight > 50) {
+            total = exceeding * 4;
+            System.out.println("You need to pay: '" + total + "' in taxes");
+        } else {
+            System.out.println("You dont need to pay taxes, because you did not exceed the 50kg limit");
+        }
+        return total;
+    }
+
+    public static double paintorCost(double area) {
+        final int BUCKET_COST = 80;
+        final int BUCKET_LITTER = 18;
+
+        double totalLiters = area / 3;
+        double totalBuckets = totalLiters / BUCKET_LITTER;
+        double totalCost = totalBuckets / BUCKET_COST;
+
+        System.out.println("The total cost is: '" + totalCost + "'");
+
+        return totalCost;
+    }
+
+    public static int downloadTime(double fileSize, double internetSpeed) {
+        int totalTime = (int) (fileSize / internetSpeed);
+        System.out.println("You file is going to be downloaded in '" + totalTime + "' minutes");
+        return totalTime;
+    }
 }
