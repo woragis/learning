@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int compare_string(char *string1, char *string2);
-int show_help();
+void show_help();
 
 int main(int argc, char *argv[])
 {
@@ -37,7 +37,7 @@ int compare_string(char *string1, char *string2)
     return 0;
 }
 
-int show_help()
+void show_help()
 {
     printf("===============================\n");
     printf("-----How to use the program----\n");
@@ -51,5 +51,6 @@ int show_help()
     printf("--------  ./src/main  ---------\n");
     printf("===============================\n");
     printf("\n");
-    return 0;
+
+    return;
 }
