@@ -39,13 +39,17 @@ int compare_string(char *string1, char *string2)
 
 int show_help()
 {
-    printf("How to use the program:\n");
+    printf("===============================\n");
+    printf("-----How to use the program----\n");
     printf("\n");
-    printf("  How to build the program:\n");
-    printf("    make src/main:\n");
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+    printf("----How to build the program---\n");
+    printf("-------  make src/main  -------\n");
     printf("\n");
-    printf("  How to Execute the program::\n");
-    printf("    ./src/main:\n");
+    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+    printf("---How to Execute the program--\n");
+    printf("--------  ./src/main  ---------\n");
+    printf("===============================\n");
     printf("\n");
     return 0;
 }
