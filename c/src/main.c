@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 int compare_string(char *string1, char *string2);
+int show_help();
 
 int main(int argc, char *argv[])
 {
@@ -8,11 +9,12 @@ int main(int argc, char *argv[])
     printf("Count of arguments: %d\n", argc);
     for (int i = 0; i < argc; i++)
     {
+        printf("Argument %d: %s\n", i, argv[i]);
         if (compare_string("help", argv[i]) == 0)
         {
             printf("This person needs help!\n");
+            show_help();
         }
-        printf("Argument %d: %s\n", i, argv[i]);
     }
     return 0;
 }
@@ -32,5 +34,18 @@ int compare_string(char *string1, char *string2)
         char1 = string1[i];
         char2 = string2[i];
     }
+    return 0;
+}
+
+int show_help()
+{
+    printf("How to use the program:\n");
+    printf("\n");
+    printf("  How to build the program:\n");
+    printf("    make src/main:\n");
+    printf("\n");
+    printf("  How to Execute the program::\n");
+    printf("    ./src/main:\n");
+    printf("\n");
     return 0;
 }
