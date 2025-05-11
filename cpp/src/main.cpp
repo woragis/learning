@@ -6,11 +6,13 @@ using std::endl;
 
 void hello_world();
 void data_types();
+void data_types_sizes();
 
 int main()
 {
     hello_world();
     data_types();
+    data_types_sizes();
 
     return 0;
 }
@@ -70,4 +72,17 @@ void data_types()
     short value2{1000};
     short sum{value1 * value2};
     cout << "The sum of " << value1 << " and " << value2 << " is " << sum << endl;
+}
+
+void data_types_sizes()
+{
+    cout << "The size of char is: " << sizeof(char) << endl;
+    cout << "The size of short int is: " << sizeof(short int) << endl;
+    cout << "The size of int is: " << sizeof(int) << endl;
+    cout << "The size of unsigned int is: " << sizeof(unsigned int) << endl;
+    cout << "The size of long int is: " << sizeof(long int) << endl;
+    cout << "The size of long long int is: " << sizeof(long long int) << endl;
+    cout << "The size of float is: " << sizeof(float) << endl;
+    cout << "The size of double is: " << sizeof(double) << endl;
+    cout << "The size of long double is: " << sizeof(long double) << endl;
 }
