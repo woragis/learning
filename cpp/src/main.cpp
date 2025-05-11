@@ -7,12 +7,14 @@ using std::endl;
 void hello_world();
 void data_types();
 void data_types_sizes();
+void arrays();
 
 int main()
 {
     hello_world();
     data_types();
     data_types_sizes();
+    arrays();
 
     return 0;
 }
@@ -85,4 +87,30 @@ void data_types_sizes()
     cout << "The size of float is: " << sizeof(float) << endl;
     cout << "The size of double is: " << sizeof(double) << endl;
     cout << "The size of long double is: " << sizeof(long double) << endl;
+}
+
+void arrays()
+{
+    int my_nums[10]{};
+    my_nums[0] = 10;
+    my_nums[1] = 320;
+    my_nums[2] = 405;
+    my_nums[3] = 595;
+    my_nums[4] = 610;
+    my_nums[5] = 740;
+    my_nums[6] = 890;
+    my_nums[7] = 12000;
+    my_nums[8] = 20500;
+    my_nums[9] = 190230;
+    cout << my_nums << endl;
+    cout << my_nums[0] << endl;
+    cout << my_nums[1] << endl;
+    cout << my_nums[2] << endl;
+    cout << my_nums[3] << endl;
+    cout << my_nums[4] << endl;
+    cout << my_nums[5] << endl;
+    cout << my_nums[6] << endl;
+    cout << my_nums[7] << endl;
+    cout << my_nums[8] << endl;
+    cout << my_nums[9] << endl;
 }
