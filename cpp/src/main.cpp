@@ -8,6 +8,7 @@ void hello_world();
 void data_types();
 void data_types_sizes();
 void arrays();
+void consts();
 
 int main()
 {
@@ -15,6 +16,7 @@ int main()
     data_types();
     data_types_sizes();
     arrays();
+    consts();
 
     return 0;
 }
@@ -113,4 +115,11 @@ void arrays()
     cout << my_nums[7] << endl;
     cout << my_nums[8] << endl;
     cout << my_nums[9] << endl;
+}
+
+void consts()
+{
+  const int my_age {21};
+  cout << "My age is " << my_age << " and will be it forever!" << endl;
+  cout << "At least i hope..." << endl;
 }
