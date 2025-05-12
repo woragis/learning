@@ -119,7 +119,18 @@ void arrays()
 
 void consts()
 {
-  const int my_age {21};
-  cout << "My age is " << my_age << " and will be it forever!" << endl;
-  cout << "At least i hope..." << endl;
+    const int my_age{21};
+    cout << "My age is " << my_age << " and will be it forever!" << endl;
+    cout << "At least i hope..." << endl;
+
+    const bool my_desire_to_have_a_nintendo_collection{true};
+    cout << "Do I want to have a nintendo collection? " << endl;
+    if (my_desire_to_have_a_nintendo_collection)
+    {
+        cout << "Yes! I want to have a Nintendo Collection!" << endl;
+    }
+    else
+    {
+        cout << "No, I dont want it." << endl;
+    }
 }
