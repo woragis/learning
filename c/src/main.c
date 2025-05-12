@@ -2,9 +2,14 @@
 
 int compare_string(char *string1, char *string2);
 void show_help();
+void swap(int *a, int *b);
 
 int main(int argc, char *argv[])
 {
+    int a = 20;
+    int b = 80;
+    swap(&a, &b);
+
     printf("Hello, World!\n");
     printf("Count of arguments: %d\n", argc);
     for (int i = 0; i < argc; i++)
@@ -53,4 +58,22 @@ void show_help()
     printf("\n");
 
     return;
+}
+
+void help()
+{
+    printf("[0 or ttt] - Tic Tac Toe\n");
+    printf("[1 or sdk] - Sudoku\n");
+    printf("[2 or h] - Help\n");
+}
+
+void swap(int *a, int *b)
+{
+    printf("Previous result:\n");
+    printf("A: %d  B: %d\n", *a, *b);
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+    printf("After result:\n");
+    printf("A: %d  B: %d\n", *a, *b);
 }
