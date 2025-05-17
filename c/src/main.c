@@ -69,11 +69,19 @@ void help()
 
 void swap(int *a, int *b)
 {
+    // Common swap
+    // printf("Previous result:\n");
+    // printf("A: %d  B: %d\n", *a, *b);
+    // int temp = *a;
+    // *a = *b;
+    // *b = temp;
+    // printf("After result:\n");
+    // printf("A: %d  B: %d\n", *a, *b);
     printf("Previous result:\n");
     printf("A: %d  B: %d\n", *a, *b);
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+    *a = *a ^ *b;
+    *b = *b ^ *a;
+    *a = *a ^ *b;
     printf("After result:\n");
     printf("A: %d  B: %d\n", *a, *b);
 }
