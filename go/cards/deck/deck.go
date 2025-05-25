@@ -3,6 +3,8 @@ package deck
 import (
 	"fmt"
 	"math/rand"
+	"os"
+	"strings"
 	"time"
 )
 
@@ -41,4 +43,23 @@ func (d Deck) Shuffle() {
 		newPosition := r.Intn(length)
 		d[i], d[newPosition] = d[newPosition], d[i]
 	}
+}
+
+func (d Deck) ToString() string {
+	return strings.Join([]string(d), ",")
+}
+
+func (d Deck) SaveToFile(filename string) error {
+	return os.WriteFile(filename, []byte(d.ToString()), 0666)
+}
+
+func NewDeckFromFile(filename string) Deck {
+	bs, err := os.ReadFile(filename)
+	if err != nil {
+		fmt.Println("Error:",err)
+		os.Exit(1)
+	}
+	s := strings.Split(string(bs), ",")
+
+	return Deck(s)
 }

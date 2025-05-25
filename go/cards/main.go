@@ -7,6 +7,8 @@ import (
 func main() {
 	myCards := deck.NewDeck()
 
-	myCards.Shuffle()
-	myCards.Print()
+	myCards.SaveToFile("cards")
+
+	cards := deck.NewDeckFromFile("cards")
+	cards.Print()
 }
