@@ -2,6 +2,8 @@ package deck
 
 import (
 	"fmt"
+	"math/rand"
+	"time"
 )
 
 type Deck []string
@@ -28,4 +30,15 @@ func (d Deck) Print() {
 
 func Deal(d Deck, handSize int) (Deck, Deck) {
 	return d[:handSize], d[handSize:]
+}
+
+func (d Deck) Shuffle() {
+	source := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(source)
+
+	length := len(d) - 1
+	for i := range d {
+		newPosition := r.Intn(length)
+		d[i], d[newPosition] = d[newPosition], d[i]
+	}
 }
