@@ -7,5 +7,7 @@ import (
 func main() {
 	myCards := deck.NewDeck()
 
-	myCards.Print()
+	cards, remaining := deck.Deal(myCards, 8)
+	cards.Print()
+	remaining.Print()
 }
